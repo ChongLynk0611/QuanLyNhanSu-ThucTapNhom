@@ -141,6 +141,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\BusinessCardElement.cs" />
+    <Compile Include="Classes\clsbangluong.cs" />
+    <Compile Include="Classes\clschitietchuyenmon.cs" />
+    <Compile Include="Classes\clschitiethopdong.cs" />
+    <Compile Include="Classes\clschitietngoaingu.cs" />
+    <Compile Include="Classes\clsdm.cs" />
+    <Compile Include="Classes\clsdmchucvu.cs" />
+    <Compile Include="Classes\clsdmchuyenmon.cs" />
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
