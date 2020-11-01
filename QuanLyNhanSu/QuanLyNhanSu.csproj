@@ -153,6 +153,14 @@
     <Compile Include="Classes\clsdmform.cs" />
     <Compile Include="Classes\clsdmhd.cs" />
     <Compile Include="Classes\clsdmngoaingu.cs" />
+    <Compile Include="Classes\clsdmpb.cs" />
+    <Compile Include="Classes\clsDMTo.cs" />
+    <Compile Include="Classes\clsdmtongiao.cs" />
+    <Compile Include="Classes\clsdmtrinhdo.cs" />
+    <Compile Include="Classes\clshieuqua.cs" />
+    <Compile Include="Classes\clshosoluong.cs" />
+    <Compile Include="Classes\clsnhanvien.cs" />
+    <Compile Include="Classes\clsnhomnguoidung.cs" />
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
