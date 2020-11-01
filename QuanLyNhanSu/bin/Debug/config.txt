@@ -1,0 +1,4 @@
+﻿Server:DESKTOP-UR6D0PD\SQLEXPRESS
+Database:QuanLyNhanSu
+Username:
+Password:
