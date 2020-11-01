@@ -149,6 +149,10 @@
     <Compile Include="Classes\clsdm.cs" />
     <Compile Include="Classes\clsdmchucvu.cs" />
     <Compile Include="Classes\clsdmchuyenmon.cs" />
+    <Compile Include="Classes\clsDMDanToc.cs" />
+    <Compile Include="Classes\clsdmform.cs" />
+    <Compile Include="Classes\clsdmhd.cs" />
+    <Compile Include="Classes\clsdmngoaingu.cs" />
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
