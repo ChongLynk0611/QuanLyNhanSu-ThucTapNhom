@@ -170,6 +170,12 @@
     <Compile Include="Classes\clsUser_Right.cs" />
     <Compile Include="Classes\readFile.cs" />
     <Compile Include="Classes\sql.cs" />
+    <Compile Include="frmchonbcnv.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmchonbcnv.Designer.cs">
+      <DependentUpon>frmchonbcnv.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -178,6 +184,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmchonbcnv.resx">
+      <DependentUpon>frmchonbcnv.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
