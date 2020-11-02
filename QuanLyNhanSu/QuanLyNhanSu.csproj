@@ -161,6 +161,15 @@
     <Compile Include="Classes\clshosoluong.cs" />
     <Compile Include="Classes\clsnhanvien.cs" />
     <Compile Include="Classes\clsnhomnguoidung.cs" />
+    <Compile Include="Classes\clsQuanHeGD.cs" />
+    <Compile Include="Classes\clsTiLeLuong.cs" />
+    <Compile Include="Classes\clstimngoaingu.cs" />
+    <Compile Include="Classes\clstimtttrinhdo.cs" />
+    <Compile Include="Classes\clstkhopdong.cs" />
+    <Compile Include="Classes\clsUser.cs" />
+    <Compile Include="Classes\clsUser_Right.cs" />
+    <Compile Include="Classes\readFile.cs" />
+    <Compile Include="Classes\sql.cs" />
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
