@@ -212,5 +212,174 @@ namespace QuanLyNhanSu
             cboPhong.Enabled = b;
             cboTo.Enabled = b;
         }
+        //
+        //tab sơ yếu lý lịch
+        //
+        //setcontrol so yeu ly lich
+        private void setcontrolsy(bool b)
+        {
+            foreach (Control c in grpsoyeu1.Controls)
+            {
+                if (c.Name.Contains("txtsy") == true || c.Name.Contains("cbosy") == true)
+                    c.Enabled = b;
+            }
+            foreach (Control c in grpsoyeu2.Controls)
+            {
+                if (c.Name.Contains("txtsy") == true || c.Name.Contains("cbosy") == true)
+                    c.Enabled = b;
+            }
+
+        }
+
+        //phương thức làm mờ bộ nút của tabsoyeu
+        private void setcmd(bool b)
+        {
+            btnbrowser.Enabled = !b;
+            cmdthem.Enabled = b;
+            cmdCapnhat.Enabled = b;
+            cmdxoa.Enabled = b;
+            cmdluu.Enabled = !b;
+            btnInNhanvien.Enabled = b;
+        }
+
+        //đưa trạng thái textbox về rỗng tabsoyeu
+        private void settextboxrong()
+        {
+            foreach (Control c in grpsoyeu1.Controls)
+            {
+                if (c.Name.Contains("txtsy") == true)
+                    c.Text = "";
+            }
+            foreach (Control c in grpsoyeu2.Controls)
+            {
+                if (c.Name.Contains("txtsy") == true)
+                    c.Text = "";
+            }
+        }
+
+        //khởi tạo dữ liệu cho các combobox cho tabsoyeu
+        private void taocombosy()
+        {
+            //đưa dữ liệu vào cbosyphong
+            cbosyphong.DataSource = cPhong.taocombo();
+            cbosyphong.DisplayMember = "tbl_PhongBan.TenPhong";
+            cbosyphong.ValueMember = "tbl_PhongBan.MaPhong";
+            if (txtsymanv.Text != "")
+                cbosyphong.SelectedValue = laydulieutheoma(txtsymanv.Text.Trim(), "MaPhong");
+            //đưa dữ liệu vào cbosydantoc
+            cbosydantoc.DataSource = cDanToc.taocombo();
+            cbosydantoc.DisplayMember = "DMDanToc.TenDT";
+            cbosydantoc.ValueMember = "DMDanToc.MaDT";
+            if (txtsymanv.Text != "")
+                cbosydantoc.SelectedValue = int.Parse(laydulieutheoma(txtsymanv.Text.Trim(), "MaDT"));
+            //đưa dữ liệu vào cbosychucvu
+            cbosychucvu.DataSource = cchucvu.taocombo();
+            cbosychucvu.DisplayMember = "DMChucVu.TenChucVu";
+            cbosychucvu.ValueMember = "DMChucVu.MaChucVu";
+            if (txtsymanv.Text != "")
+                cbosychucvu.SelectedValue = int.Parse(laydulieutheoma(txtsymanv.Text.Trim(), "MaChucVu"));
+            //đưa dữ liệu vào cbosytongiao
+            cbosytongiao.DataSource = ctongiao.taocombo();
+            cbosytongiao.DisplayMember = "DMTonGiao.TenTG";
+            cbosytongiao.ValueMember = "DMTonGiao.MaTG";
+            if (txtsymanv.Text != "")
+                cbosytongiao.SelectedValue = int.Parse(laydulieutheoma(txtsymanv.Text.Trim(), "MaTG"));
+        }
+
+        //hiển thị dữ liệu nhân viên vào trang sơ yếu lý lịch
+        private void HienthiTTNhanVien(string ma)
+        {
+            cnhanvien.laydl(ma);
+
+            //
+            //lấy dữ liệu vào các textbox
+            //
+            try
+            {
+                txtsymanv.Text = cnhanvien.ds.Tables["nhanvien"].Rows[0]["MaNV"].ToString();
+                txtsyhonv.Text = cnhanvien.ds.Tables["nhanvien"].Rows[0]["Ho"].ToString();
+                txtsytennv.Text = cnhanvien.ds.Tables["nhanvien"].Rows[0]["Ten"].ToString();
+                txtsyngaysinh.Text = sql.NgayToString(cnhanvien.ds.Tables["nhanvien"].Rows[0]["Ngaysinh"].ToString());
+                txtsynoisinh.Text = cnhanvien.ds.Tables["nhanvien"].Rows[0]["Noisinh"].ToString();
+                txtsysocmnd.Text = cnhanvien.ds.Tables["nhanvien"].Rows[0]["SoCMND"].ToString();
+                txtsyhokhau.Text = cnhanvien.ds.Tables["nhanvien"].Rows[0]["HokhauTT"].ToString();
+                txtsychohientai.Text = cnhanvien.ds.Tables["nhanvien"].Rows[0]["ChoOHienTai"].ToString();
+                txtsydienthoai.Text = cnhanvien.ds.Tables["nhanvien"].Rows[0]["DienThoai"].ToString();
+                txtsydtdd.Text = cnhanvien.ds.Tables["nhanvien"].Rows[0]["DTDD"].ToString();
+                txtsysoBHXH.Text = cnhanvien.ds.Tables["nhanvien"].Rows[0]["SoBHXH"].ToString();
+                txtsysoBHYT.Text = cnhanvien.ds.Tables["nhanvien"].Rows[0]["SoBHYT"].ToString();
+                txtsysotheATM.Text = cnhanvien.ds.Tables["nhanvien"].Rows[0]["SotheATM"].ToString();
+                txtsyngayvl.Text = sql.NgayToString(cnhanvien.ds.Tables["nhanvien"].Rows[0]["Ngayvaolam"].ToString());
+                txtsyghichu.Text = cnhanvien.ds.Tables["nhanvien"].Rows[0]["GhiChu"].ToString();
+                txtsysEmail.Text = cnhanvien.ds.Tables["nhanvien"].Rows[0]["Email"].ToString();
+                //
+                //lấy dữ liệu vào các combobox
+                //khác với phương thức taocombo ở trên vì đây là đi theo mỗi nhân viên
+                cbosydantoc.DataSource = cnhanvien.ds;
+                cbosydantoc.ValueMember = "nhanvien.madt";
+                cbosydantoc.DisplayMember = "nhanvien.tendt";
+                cbosytongiao.DataSource = cnhanvien.ds;
+                cbosytongiao.ValueMember = "nhanvien.MaTG";
+                cbosytongiao.DisplayMember = "nhanvien.TenTG";
+                cbosytinhtrang.Text = cnhanvien.ds.Tables["nhanvien"].Rows[0]["Tinhtranghonnhan"].ToString();
+                cbosyphong.DataSource = cnhanvien.ds;
+                cbosyphong.ValueMember = "nhanvien.MaPhong";
+                cbosyphong.DisplayMember = "nhanvien.tenphong";
+                cbosyto.DataSource = cnhanvien.ds;
+                cbosyto.ValueMember = "nhanvien.Mato";
+                cbosyto.DisplayMember = "nhanvien.TenTo";
+                cbosychucvu.DataSource = cnhanvien.ds;
+                cbosychucvu.ValueMember = "nhanvien.MaChucVu";
+                cbosychucvu.DisplayMember = "NhanVien.TenChucVu";
+                //
+                //lấy dữ liệu vào optgioitinh
+                //
+                if (cnhanvien.ds.Tables["nhanvien"].Rows[0]["GioiTinh"].ToString() == "1")
+                    optNam.Checked = true;
+                else
+                    optNu.Checked = true;
+                //hien thi hinh anh
+
+                filename = cnhanvien.ds.Tables["nhanvien"].Rows[0]["hinhanh"].ToString();
+                if (filename != "")
+                    picHinh.Image = new Bitmap(Application.StartupPath + @"\Hinh\" + filename);
+                else
+                {
+                    filename = "";
+                    picHinh.Image = null;
+                }
+            }
+            catch { }
+        }
+
+        //lấy dữ liệu cho các combobox trong tabsoyeu theo mã nhân viên
+        private string laydulieutheoma(string ma, string macombo)
+        {
+            cnhanvien.sc.Open();
+            string sql = "select " + macombo + " from Tbl_nhanvien where MaNV='" + ma + "'";
+            SqlCommand cmd = new SqlCommand(sql, cnhanvien.sc);
+            object o = cmd.ExecuteScalar();
+            cnhanvien.sc.Close();
+            return o.ToString();
+        }
+
+        //lấy mã nhân viên tự động
+        private string laymatudong(string s)
+        {
+            string kq = "";
+            int so = int.Parse(s.Substring(2));
+            if ((so + 1) < 10)
+                kq = "NV000" + (so + 1);
+            if ((so + 1) < 100 && (so + 1) >= 10)
+                kq = "NV00" + (so + 1);
+            if ((so + 1) <= 999 && (so + 1) >= 100)
+                kq = "NV0" + (so + 1);
+            else
+                kq = "NV" + (so + 1);
+
+
+            return kq;
+        }
+
     }
 }
