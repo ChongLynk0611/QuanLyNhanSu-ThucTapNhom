@@ -74,5 +74,101 @@ namespace QuanLyNhanSu
             else
                 return false;
         }
+        //lấy ds nhân viên theo tổ đưa vào file xml;
+        static public DataSet bcnhanvien(string maphong, string mato)
+        {
+            SqlConnection sc = frmMain.me.sql.connectSQL();
+            SqlDataAdapter sda = new SqlDataAdapter();
+            DataSet ds = new DataSet();
+            ds.Clear();
+            sc.Open();
+            string sel = "select * from tbl_nhanvien where maphong ='" + maphong
+                          + "' and mato ='" + mato + "'";
+            SqlCommand scmd = new SqlCommand(sel, sc);
+            sda.SelectCommand = scmd;
+            sda.Fill(ds, "nhanvien");
+            string sel1 = "select * from tbl_danhmucto";
+            SqlCommand scmd1 = new SqlCommand(sel1, sc);
+            sda.SelectCommand = scmd1;
+            sda.Fill(ds, "dmto");
+            string sel2 = "select * from tbl_phongban";
+            SqlCommand scmd2 = new SqlCommand(sel2, sc);
+            sda.SelectCommand = scmd2;
+            sda.Fill(ds, "phong");
+            string sel3 = "select * from tbl_dmchucvu";
+            SqlCommand scmd3 = new SqlCommand(sel3, sc);
+            sda.SelectCommand = scmd3;
+            sda.Fill(ds, "chucvu");
+            sc.Close();
+            ds.WriteXmlSchema("bcnhanvien.xml");
+            return ds;
+        }
+        //lấy ds nhân viên theo phòng đưa vào file xml;
+        static public DataSet bcnhanvien(string maphong)
+        {
+            SqlConnection sc = frmMain.me.sql.connectSQL();
+            SqlDataAdapter sda = new SqlDataAdapter();
+            DataSet ds = new DataSet();
+            ds.Clear();
+            sc.Open();
+            string sel = "select * from tbl_nhanvien where maphong ='" + maphong + "'";
+            SqlCommand scmd = new SqlCommand(sel, sc);
+            sda.SelectCommand = scmd;
+            sda.Fill(ds, "nhanvien");
+            string sel2 = "select * from tbl_phongban";
+            SqlCommand scmd2 = new SqlCommand(sel2, sc);
+            sda.SelectCommand = scmd2;
+            sda.Fill(ds, "phong");
+            string sel3 = "select * from tbl_dmchucvu";
+            SqlCommand scmd3 = new SqlCommand(sel3, sc);
+            sda.SelectCommand = scmd3;
+            sda.Fill(ds, "chucvu");
+            sc.Close();
+            ds.WriteXmlSchema("bcnhanvien.xml");
+            return ds;
+        }
+        //lấy lý lịch nhân viên đưa vào file xml;
+        static public DataSet lylichnv(string manv)
+        {
+            SqlConnection sc = frmMain.me.sql.connectSQL();
+            SqlDataAdapter sda = new SqlDataAdapter();
+            DataSet ds = new DataSet();
+            ds.Clear();
+            sc.Open();
+            //nhanvien
+            string sel = "select * from tbl_NhanVien where manv ='" + manv + "'";
+            SqlCommand scmd = new SqlCommand(sel, sc);
+            sda.SelectCommand = scmd;
+            sda.Fill(ds, "nhanvien");
+            //to
+            string sel1 = "select * from tbl_danhmucto";
+            SqlCommand scmd1 = new SqlCommand(sel1, sc);
+            sda.SelectCommand = scmd1;
+            sda.Fill(ds, "dmto");
+            //phongban
+            string sel2 = "select * from tbl_phongban";
+            SqlCommand scmd2 = new SqlCommand(sel2, sc);
+            sda.SelectCommand = scmd2;
+            sda.Fill(ds, "phong");
+            //chucvu
+            string sel3 = "select * from tbl_dmchucvu";
+            SqlCommand scmd3 = new SqlCommand(sel3, sc);
+            sda.SelectCommand = scmd3;
+            sda.Fill(ds, "chucvu");
+            //tongiao
+            string sel4 = "select * from tbl_DMtongiao";
+            SqlCommand scmd4 = new SqlCommand(sel4, sc);
+            sda.SelectCommand = scmd4;
+            sda.Fill(ds, "tongiao");
+            //dantoc
+            string sel5 = "select * from tbl_DMdantoc";
+            SqlCommand scmd5 = new SqlCommand(sel5, sc);
+            sda.SelectCommand = scmd5;
+            sda.Fill(ds, "dantoc");
+            sc.Close();
+            ds.WriteXmlSchema("HSNhanVien.xml");
+            return ds;
+
+        }
     }
 }
