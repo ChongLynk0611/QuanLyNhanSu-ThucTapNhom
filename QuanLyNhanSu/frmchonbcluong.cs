@@ -93,7 +93,7 @@ namespace QuanLyNhanSu
             cboto.ValueMember = "DanhMucto.mato";
             cboto.Text = "";
         }
-
+        
 
 
     }
