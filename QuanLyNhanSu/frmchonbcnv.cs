@@ -10,7 +10,7 @@ using System.Data.SqlClient;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
 using Telerik.Data;
-using QuanLyNhanSu.Classes;
+using QuanLyNhanSu.Class;
 
 namespace QuanLyNhanSu
 {
@@ -169,6 +169,44 @@ namespace QuanLyNhanSu
             ds.WriteXmlSchema("HSNhanVien.xml");
             return ds;
 
+        }
+        private void cbophong_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cboto.DataSource = cto.taocombo(cbophong.SelectedValue.ToString());
+            cboto.DisplayMember = "DanhMucto.tento";
+            cboto.ValueMember = "DanhMucto.mato";
+            cboto.Text = "";
+        }
+
+        private void cmdin_Click(object sender, EventArgs e)
+        {
+            if (cboto.Text.Trim() == "")
+            {
+                if (kiemtra(cbophong.SelectedValue.ToString()) == true)
+                {
+                    maphong = cbophong.SelectedValue.ToString();
+                    frmrptbcnhanvien f = new frmrptbcnhanvien();
+                    f.MdiParent = this.MdiParent;
+                    f.Show();
+                }
+            }
+            else if (cboto.Text.Trim() != "")
+            {
+                if (kiemtra(cbophong.SelectedValue.ToString(), cboto.SelectedValue.ToString()) == true)
+                {
+                    maphong = cbophong.SelectedValue.ToString();
+                    mato = cboto.SelectedValue.ToString();
+                    frmrptbcnhanvien f = new frmrptbcnhanvien();
+                    f.MdiParent = this.MdiParent;
+                    f.Show();
+                }
+            }
+            maphong = ""; mato = "";
+        }
+
+        private void frmchonbcnv_Load(object sender, EventArgs e)
+        {
+            maphong = ""; mato = ""; manv = "";
         }
     }
 }
