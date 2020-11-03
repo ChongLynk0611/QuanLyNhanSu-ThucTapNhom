@@ -380,6 +380,464 @@ namespace QuanLyNhanSu
 
             return kq;
         }
+        //bộ nút của tab sơ yếu lý lịch
 
+        private void cmdluu_Click(object sender, EventArgs e)
+        {
+            if (this.txtsyhonv.Text.Trim() != String.Empty && this.txtsytennv.Text.Trim() != String.Empty && this.txtsyngaysinh.Text.Trim() != String.Empty)
+            {
+
+                if (this.txtsysEmail.Text.Trim() != String.Empty)
+                {
+                    if (sql.IsEmail(this.txtsysEmail.Text) == true)
+                    {
+                        DialogResult rs = RadMessageBox.Show("\nBạn có muốn lưu thông tin này ?\n", "Thông báo", MessageBoxButtons.OKCancel, RadMessageIcon.Question);
+                        if (rs == DialogResult.OK)
+                        {
+                            if (ksy == 1)
+                            {
+                                if (cbosyto.SelectedItem != null)
+                                    //them nhan vien neu nhu phong do co to
+                                    cnhanvien.ThemNV(txtsymanv.Text.Trim(),
+                                             txtsyhonv.Text.Trim(),
+                                             txtsytennv.Text.Trim(),
+                                             optNam.Checked ? '1' : '0',
+                                             txtsysocmnd.Text.Trim(),
+                                             txtsyngaysinh.Text.Trim() == "" ? DateTime.Today : sql.TraVeNgay(txtsyngaysinh.Text.Trim(), 1),
+                                             txtsynoisinh.Text.Trim(),
+                                             int.Parse(cbosytongiao.SelectedValue.ToString()),
+                                             int.Parse(cbosydantoc.SelectedValue.ToString()),
+                                             txtsydienthoai.Text.Trim(),
+                                             txtsydtdd.Text.Trim(),
+                                             txtsyhokhau.Text.Trim(),
+                                             txtsychohientai.Text.Trim(),
+                                             cbosytinhtrang.Text.Trim(),
+                                             filename.ToString(),
+                                             int.Parse(cbosychucvu.SelectedValue.ToString()),
+                                             cbosyphong.SelectedValue.ToString(),
+                                             cbosyto.SelectedValue.ToString(),
+                                             txtsyngayvl.Text.Trim() == "" ? DateTime.Today : sql.TraVeNgay(txtsyngayvl.Text.Trim(), 1),
+                                             txtsysoBHYT.Text.Trim(), txtsysoBHXH.Text.Trim(),
+                                             txtsysotheATM.Text.Trim(), txtsyghichu.Text.Trim(), txtsysEmail.Text.Trim());
+                                else
+                                    //them nhan vien neu nhu phong do khong co to
+                                    cnhanvien.ThemNV(txtsymanv.Text.Trim(),
+                                             txtsyhonv.Text.Trim(),
+                                             txtsytennv.Text.Trim(),
+                                             optNam.Checked ? '1' : '0',
+                                             txtsysocmnd.Text.Trim(),
+                                             txtsyngaysinh.Text.Trim() == "" ? DateTime.Today : sql.TraVeNgay(txtsyngaysinh.Text.Trim(), 1),
+                                             txtsynoisinh.Text.Trim(),
+                                             int.Parse(cbosytongiao.SelectedValue.ToString()),
+                                             int.Parse(cbosydantoc.SelectedValue.ToString()),
+                                             txtsydienthoai.Text.Trim(),
+                                             txtsydtdd.Text.Trim(),
+                                             txtsyhokhau.Text.Trim(),
+                                             txtsychohientai.Text.Trim(),
+                                             cbosytinhtrang.Text.Trim(),
+                                             filename.ToString(),
+                                             int.Parse(cbosychucvu.SelectedValue.ToString()),
+                                             cbosyphong.SelectedValue.ToString(),
+                                             txtsyngayvl.Text.Trim() == "" ? DateTime.Today : sql.TraVeNgay(txtsyngayvl.Text.Trim(), 1),
+                                             txtsysoBHYT.Text.Trim(), txtsysoBHXH.Text.Trim(),
+                                             txtsysotheATM.Text.Trim(), txtsyghichu.Text.Trim(), txtsysEmail.Text.Trim());
+                            }
+                            else if (ksy == 2)
+                            {
+                                if (cbosyto.SelectedItem != null)
+                                    if (cbosyto.Text != "")
+                                        //sua nhan vien neu nhu nhan vien do co to
+                                        cnhanvien.SuaNV(txtsymanv.Text.Trim(),
+                                                txtsyhonv.Text.Trim(),
+                                                txtsytennv.Text.Trim(),
+                                                optNam.Checked ? '1' : '0',
+                                                txtsysocmnd.Text.Trim(),
+                                                sql.TraVeNgay(txtsyngaysinh.Text.Trim(), 1),
+                                                txtsynoisinh.Text.Trim(),
+                                                int.Parse(cbosytongiao.SelectedValue.ToString()),
+                                                int.Parse(cbosydantoc.SelectedValue.ToString()),
+                                                txtsydienthoai.Text.Trim(),
+                                                txtsydtdd.Text.Trim(),
+                                                txtsyhokhau.Text.Trim(),
+                                                txtsychohientai.Text.Trim(),
+                                                cbosytinhtrang.Text.Trim(),
+                                                filename.ToString(),
+                                                int.Parse(cbosychucvu.SelectedValue.ToString()),
+                                                cbosyphong.SelectedValue.ToString(),
+                                                cbosyto.SelectedValue.ToString(),
+                                                sql.TraVeNgay(txtsyngayvl.Text.Trim(), 1),
+                                                txtsysoBHYT.Text.Trim(), txtsysoBHXH.Text.Trim(),
+                                                txtsysotheATM.Text.Trim(), txtsyghichu.Text.Trim(), txtsysEmail.Text.Trim());
+                                    else
+                                    {
+                                        //sua nhan vien neu nhu nhan vien do khong co ma to
+                                        cnhanvien.SuaNV(txtsymanv.Text.Trim(),
+                                                txtsyhonv.Text.Trim(),
+                                                txtsytennv.Text.Trim(),
+                                                optNam.Checked ? '1' : '0',
+                                                txtsysocmnd.Text.Trim(),
+                                                sql.TraVeNgay(txtsyngaysinh.Text.Trim(), 1),
+                                                txtsynoisinh.Text.Trim(),
+                                                int.Parse(cbosytongiao.SelectedValue.ToString()),
+                                                int.Parse(cbosydantoc.SelectedValue.ToString()),
+                                                txtsydienthoai.Text.Trim(),
+                                                txtsydtdd.Text.Trim(),
+                                                txtsyhokhau.Text.Trim(),
+                                                txtsychohientai.Text.Trim(),
+                                                cbosytinhtrang.Text.Trim(),
+                                                filename.ToString(),
+                                                int.Parse(cbosychucvu.SelectedValue.ToString()),
+                                                cbosyphong.SelectedValue.ToString(),
+                                                sql.TraVeNgay(txtsyngayvl.Text.Trim(), 1),
+                                                txtsysoBHYT.Text.Trim(), txtsysoBHXH.Text.Trim(),
+                                                txtsysotheATM.Text.Trim(), txtsyghichu.Text.Trim(), txtsysEmail.Text.Trim());
+                                        cnhanvien.sc.Open();
+                                        string ins_mato = "update tbl_nhanvien set mato =null where MaNV='" + txtsymanv.Text.Trim() + "'";
+                                        SqlCommand cmd_ins = new SqlCommand(ins_mato, cnhanvien.sc);
+                                        try
+                                        {
+                                            cmd_ins.ExecuteNonQuery();
+                                        }
+                                        catch (SqlException ex)
+                                        {
+                                            MessageBox.Show(ex.Errors + " " + ex.Number);
+                                        }
+                                        cnhanvien.sc.Close();
+                                    }
+                                else
+                                { //sua nhan vien neu nhu nhan vien do khong co ma to
+                                    cnhanvien.SuaNV(txtsymanv.Text.Trim(),
+                                            txtsyhonv.Text.Trim(),
+                                            txtsytennv.Text.Trim(),
+                                            optNam.Checked ? '1' : '0',
+                                            txtsysocmnd.Text.Trim(),
+                                            sql.TraVeNgay(txtsyngaysinh.Text.Trim(), 1),
+                                            txtsynoisinh.Text.Trim(),
+                                            int.Parse(cbosytongiao.SelectedValue.ToString()),
+                                            int.Parse(cbosydantoc.SelectedValue.ToString()),
+                                            txtsydienthoai.Text.Trim(),
+                                            txtsydtdd.Text.Trim(),
+                                            txtsyhokhau.Text.Trim(),
+                                            txtsychohientai.Text.Trim(),
+                                            cbosytinhtrang.Text.Trim(),
+                                            filename.ToString(),
+                                            int.Parse(cbosychucvu.SelectedValue.ToString()),
+                                            cbosyphong.SelectedValue.ToString(),
+                                            sql.TraVeNgay(txtsyngayvl.Text.Trim(), 1),
+                                            txtsysoBHYT.Text.Trim(), txtsysoBHXH.Text.Trim(),
+                                            txtsysotheATM.Text.Trim(), txtsyghichu.Text.Trim(), txtsysEmail.Text.Trim());
+                                    cnhanvien.sc.Open();
+                                    string ins_mato = "update tbl_nhanvien set mato =null where MaNV='" + txtsymanv.Text.Trim() + "'";
+                                    SqlCommand cmd_ins = new SqlCommand(ins_mato, cnhanvien.sc);
+                                    try
+                                    {
+                                        cmd_ins.ExecuteNonQuery();
+                                    }
+                                    catch (SqlException ex)
+                                    {
+                                        MessageBox.Show(ex.Errors + " " + ex.Number);
+                                    }
+                                    cnhanvien.sc.Close();
+                                }
+                            }
+                        }
+                        else
+                        {
+                            HienthiTTNhanVien(bienmanv);
+                        }
+                        ksy = 0;
+                        setcontrolsy(false);
+                        setlist(true);
+                        setcmd(true);
+                        lstNhanvien.Items.Clear();
+                        HienThiListNV(cPhong.laydlList(cboPhong.SelectedValue.ToString()), lstNhanvien);
+                    }
+                    else
+                    {
+                        RadMessageBox.Show("\nEmail sai định dạng !\n", "Thông báo", MessageBoxButtons.OK, RadMessageIcon.Error);
+                    }
+                }
+                else
+                {
+                    DialogResult rs = RadMessageBox.Show("\nBạn có muốn lưu thông tin này ?\n", "Thông báo", MessageBoxButtons.OKCancel, RadMessageIcon.Question);
+                    if (rs == DialogResult.OK)
+                    {
+                        if (ksy == 1)
+                        {
+                            if (cbosyto.SelectedItem != null)
+                                //them nhan vien neu nhu phong do co to
+                                cnhanvien.ThemNV(txtsymanv.Text.Trim(),
+                                         txtsyhonv.Text.Trim(),
+                                         txtsytennv.Text.Trim(),
+                                         optNam.Checked ? '1' : '0',
+                                         txtsysocmnd.Text.Trim(),
+                                         txtsyngaysinh.Text.Trim() == "" ? DateTime.Today : sql.TraVeNgay(txtsyngaysinh.Text.Trim(), 1),
+                                         txtsynoisinh.Text.Trim(),
+                                         int.Parse(cbosytongiao.SelectedValue.ToString()),
+                                         int.Parse(cbosydantoc.SelectedValue.ToString()),
+                                         txtsydienthoai.Text.Trim(),
+                                         txtsydtdd.Text.Trim(),
+                                         txtsyhokhau.Text.Trim(),
+                                         txtsychohientai.Text.Trim(),
+                                         cbosytinhtrang.Text.Trim(),
+                                         filename.ToString(),
+                                         int.Parse(cbosychucvu.SelectedValue.ToString()),
+                                         cbosyphong.SelectedValue.ToString(),
+                                         cbosyto.SelectedValue.ToString(),
+                                         txtsyngayvl.Text.Trim() == "" ? DateTime.Today : sql.TraVeNgay(txtsyngayvl.Text.Trim(), 1),
+                                         txtsysoBHYT.Text.Trim(), txtsysoBHXH.Text.Trim(),
+                                         txtsysotheATM.Text.Trim(), txtsyghichu.Text.Trim(), txtsysEmail.Text.Trim());
+                            else
+                                //them nhan vien neu nhu phong do khong co to
+                                cnhanvien.ThemNV(txtsymanv.Text.Trim(),
+                                         txtsyhonv.Text.Trim(),
+                                         txtsytennv.Text.Trim(),
+                                         optNam.Checked ? '1' : '0',
+                                         txtsysocmnd.Text.Trim(),
+                                         txtsyngaysinh.Text.Trim() == "" ? DateTime.Today : sql.TraVeNgay(txtsyngaysinh.Text.Trim(), 1),
+                                         txtsynoisinh.Text.Trim(),
+                                         int.Parse(cbosytongiao.SelectedValue.ToString()),
+                                         int.Parse(cbosydantoc.SelectedValue.ToString()),
+                                         txtsydienthoai.Text.Trim(),
+                                         txtsydtdd.Text.Trim(),
+                                         txtsyhokhau.Text.Trim(),
+                                         txtsychohientai.Text.Trim(),
+                                         cbosytinhtrang.Text.Trim(),
+                                         filename.ToString(),
+                                         int.Parse(cbosychucvu.SelectedValue.ToString()),
+                                         cbosyphong.SelectedValue.ToString(),
+                                         txtsyngayvl.Text.Trim() == "" ? DateTime.Today : sql.TraVeNgay(txtsyngayvl.Text.Trim(), 1),
+                                         txtsysoBHYT.Text.Trim(), txtsysoBHXH.Text.Trim(),
+                                         txtsysotheATM.Text.Trim(), txtsyghichu.Text.Trim(), txtsysEmail.Text.Trim());
+                        }
+                        else if (ksy == 2)
+                        {
+                            if (cbosyto.SelectedItem != null)
+                                if (cbosyto.Text != "")
+                                    //sua nhan vien neu nhu nhan vien do co to
+                                    cnhanvien.SuaNV(txtsymanv.Text.Trim(),
+                                            txtsyhonv.Text.Trim(),
+                                            txtsytennv.Text.Trim(),
+                                            optNam.Checked ? '1' : '0',
+                                            txtsysocmnd.Text.Trim(),
+                                            sql.TraVeNgay(txtsyngaysinh.Text.Trim(), 1),
+                                            txtsynoisinh.Text.Trim(),
+                                            int.Parse(cbosytongiao.SelectedValue.ToString()),
+                                            int.Parse(cbosydantoc.SelectedValue.ToString()),
+                                            txtsydienthoai.Text.Trim(),
+                                            txtsydtdd.Text.Trim(),
+                                            txtsyhokhau.Text.Trim(),
+                                            txtsychohientai.Text.Trim(),
+                                            cbosytinhtrang.Text.Trim(),
+                                            filename.ToString(),
+                                            int.Parse(cbosychucvu.SelectedValue.ToString()),
+                                            cbosyphong.SelectedValue.ToString(),
+                                            cbosyto.SelectedValue.ToString(),
+                                            sql.TraVeNgay(txtsyngayvl.Text.Trim(), 1),
+                                            txtsysoBHYT.Text.Trim(), txtsysoBHXH.Text.Trim(),
+                                            txtsysotheATM.Text.Trim(), txtsyghichu.Text.Trim(), txtsysEmail.Text.Trim());
+                                else
+                                {
+                                    //sua nhan vien neu nhu nhan vien do khong co ma to
+                                    cnhanvien.SuaNV(txtsymanv.Text.Trim(),
+                                            txtsyhonv.Text.Trim(),
+                                            txtsytennv.Text.Trim(),
+                                            optNam.Checked ? '1' : '0',
+                                            txtsysocmnd.Text.Trim(),
+                                            sql.TraVeNgay(txtsyngaysinh.Text.Trim(), 1),
+                                            txtsynoisinh.Text.Trim(),
+                                            int.Parse(cbosytongiao.SelectedValue.ToString()),
+                                            int.Parse(cbosydantoc.SelectedValue.ToString()),
+                                            txtsydienthoai.Text.Trim(),
+                                            txtsydtdd.Text.Trim(),
+                                            txtsyhokhau.Text.Trim(),
+                                            txtsychohientai.Text.Trim(),
+                                            cbosytinhtrang.Text.Trim(),
+                                            filename.ToString(),
+                                            int.Parse(cbosychucvu.SelectedValue.ToString()),
+                                            cbosyphong.SelectedValue.ToString(),
+                                            sql.TraVeNgay(txtsyngayvl.Text.Trim(), 1),
+                                            txtsysoBHYT.Text.Trim(), txtsysoBHXH.Text.Trim(),
+                                            txtsysotheATM.Text.Trim(), txtsyghichu.Text.Trim(), txtsysEmail.Text.Trim());
+                                    cnhanvien.sc.Open();
+                                    string ins_mato = "update tbl_nhanvien set mato =null where MaNV='" + txtsymanv.Text.Trim() + "'";
+                                    SqlCommand cmd_ins = new SqlCommand(ins_mato, cnhanvien.sc);
+                                    try
+                                    {
+                                        cmd_ins.ExecuteNonQuery();
+                                    }
+                                    catch (SqlException ex)
+                                    {
+                                        MessageBox.Show(ex.Errors + " " + ex.Number);
+                                    }
+                                    cnhanvien.sc.Close();
+                                }
+                            else
+                            { //sua nhan vien neu nhu nhan vien do khong co ma to
+                                cnhanvien.SuaNV(txtsymanv.Text.Trim(),
+                                        txtsyhonv.Text.Trim(),
+                                        txtsytennv.Text.Trim(),
+                                        optNam.Checked ? '1' : '0',
+                                        txtsysocmnd.Text.Trim(),
+                                        sql.TraVeNgay(txtsyngaysinh.Text.Trim(), 1),
+                                        txtsynoisinh.Text.Trim(),
+                                        int.Parse(cbosytongiao.SelectedValue.ToString()),
+                                        int.Parse(cbosydantoc.SelectedValue.ToString()),
+                                        txtsydienthoai.Text.Trim(),
+                                        txtsydtdd.Text.Trim(),
+                                        txtsyhokhau.Text.Trim(),
+                                        txtsychohientai.Text.Trim(),
+                                        cbosytinhtrang.Text.Trim(),
+                                        filename.ToString(),
+                                        int.Parse(cbosychucvu.SelectedValue.ToString()),
+                                        cbosyphong.SelectedValue.ToString(),
+                                        sql.TraVeNgay(txtsyngayvl.Text.Trim(), 1),
+                                        txtsysoBHYT.Text.Trim(), txtsysoBHXH.Text.Trim(),
+                                        txtsysotheATM.Text.Trim(), txtsyghichu.Text.Trim(), txtsysEmail.Text.Trim());
+                                cnhanvien.sc.Open();
+                                string ins_mato = "update tbl_nhanvien set mato =null where MaNV='" + txtsymanv.Text.Trim() + "'";
+                                SqlCommand cmd_ins = new SqlCommand(ins_mato, cnhanvien.sc);
+                                try
+                                {
+                                    cmd_ins.ExecuteNonQuery();
+                                }
+                                catch (SqlException ex)
+                                {
+                                    MessageBox.Show(ex.Errors + " " + ex.Number);
+                                }
+                                cnhanvien.sc.Close();
+                            }
+                        }
+                    }
+                    else
+                    {
+                        HienthiTTNhanVien(bienmanv);
+                    }
+                    ksy = 0;
+                    setcontrolsy(false);
+                    setlist(true);
+                    setcmd(true);
+                    lstNhanvien.Items.Clear();
+                    HienThiListNV(cPhong.laydlList(cboPhong.SelectedValue.ToString()), lstNhanvien);
+                }
+            }
+            else
+            {
+                RadMessageBox.Show("\nHọ tên và ngày sinh nhân viên không được bỏ trống !\n", "Thông báo", MessageBoxButtons.OK, RadMessageIcon.Error);
+            }
+
+        }
+        private void cmdthem_Click(object sender, EventArgs e)
+        {
+            //if (cbosyto.DataSource !=null)
+            //cbosyto.Items.Clear();
+            settextboxrong();
+            setcontrolsy(true);
+            setlist(false);
+            taocombosy();
+            txtsyhonv.Focus();
+            setcmd(false);
+            ksy = 1;
+            filename = "noavatar.jpg";
+            if (filename != "")
+                picHinh.Image = new Bitmap(Application.StartupPath + @"\Hinh\" + filename);
+            else
+            {
+                filename = "";
+                picHinh.Image = null;
+            }
+            if (int.Parse(laymatudong(cnhanvien.laynvcuoi()).Substring(2)) > 999)
+            {
+                RadMessageBox.Show("\nChương trình chỉ được nhận dưới 1000 nhân viên !\n", "Thông báo", MessageBoxButtons.OK, RadMessageIcon.Exclamation);
+            }
+            else txtsymanv.Text = laymatudong(cnhanvien.laynvcuoi());
+        }
+
+        private void txtsymanv_Validated(object sender, EventArgs e)
+        {
+            txtsymanv.Text = txtsymanv.Text.Trim().ToUpper();
+        }
+
+        private void cbosyphong_Leave(object sender, EventArgs e)
+        {
+            cbosyto.DataSource = cTo.taocombo(cbosyphong.SelectedValue.ToString());
+            cbosyto.DisplayMember = "DanhMucTo.TenTo";
+            cbosyto.ValueMember = "DanhMucTo.MaTo";
+        }
+
+        private void cmdxoa_Click(object sender, EventArgs e)
+        {
+            DialogResult rs = RadMessageBox.Show("\nBạn muốn xóa mẩu tin này không ?\n", "Thông Báo", MessageBoxButtons.YesNo, RadMessageIcon.Question);
+            if (rs == DialogResult.Yes)
+                cnhanvien.XoaNV(txtsymanv.Text.Trim());
+            lstNhanvien.Items.Clear();
+            HienThiListNV(cPhong.laydlList(cboPhong.SelectedValue.ToString()), lstNhanvien);
+        }
+
+        private void cmdCapnhat_Click(object sender, EventArgs e)
+        {
+            if (txtsymanv.Text == "")
+                RadMessageBox.Show("\nBạn phải chọn nhân viên cập nhật !\n", "Thông Báo", MessageBoxButtons.OK, RadMessageIcon.Exclamation);
+            else
+            {
+                ksy = 2;
+                setcontrolsy(true);
+                setlist(false);
+                taocombosy();
+                txtsyhonv.Focus();
+                setcmd(false);
+            }
+        }
+
+        private void btnbrowser_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dlg = new OpenFileDialog();
+            dlg.Filter = "Images (*.png|*.jpg|*.bmp|*.gif)";
+
+            //dlg.InitialDirectory = Application.StartupPath + @"\hinh";
+            //try
+            //{
+            //    File.Copy(dlg.in,
+            //              dirListBox2.Path + "\\" + fileListBox1.FileName, true);
+
+
+
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show("Error : " + ex.Message,
+            //    "Error",
+            //    MessageBoxButtons.OK,
+            //    MessageBoxIcon.Error);
+            //}
+
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                //MessageBox.Show(dlg.FileName.ToString());
+
+                filename = dlg.FileName.Substring(dlg.FileName.LastIndexOf("\\") + 1, dlg.FileName.Length - dlg.FileName.LastIndexOf("\\") - 1);
+                try
+                {
+
+                    File.Copy(dlg.FileName, Application.StartupPath + @"\hinh\" + filename, true);
+                }
+                catch (IOException ex)
+                {
+                    //RadMessageBox.Show("\nTên file ảnh bạn chọn đã có trong dữ liệu, xin vui lòng đổi tên lại !\n","Thông báo",MessageBoxButtons.OK,RadMessageIcon.Exclamation);
+                }
+                try
+                {
+                    picHinh.Image = new Bitmap(Application.StartupPath + @"\hinh\" + filename);
+                    //picHinh.Scale(new SizeF(90,110));
+                }
+                catch
+                {
+                    RadMessageBox.Show(this, "\nHình chọn không đúng !\n", "Thông báo", MessageBoxButtons.OK, RadMessageIcon.Exclamation);
+                }
+
+            }
+
+
+        }
     }
 }
