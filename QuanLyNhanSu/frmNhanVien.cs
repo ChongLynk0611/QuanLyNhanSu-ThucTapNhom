@@ -986,5 +986,239 @@ namespace QuanLyNhanSu
         {
             if (e != null) RadMessageBox.Show("  \n Bạn đã nhập sai kiểu dữ liệu \n Xem hướng đẫn phần tên cột\n", "Thông báo");
         }
+        //
+        //tab Hợp đồng
+        //
+
+        //setcontrol tab hợp đồng 
+        private void setcontrolhd(bool b)
+        {
+            foreach (Control c in grphopdong.Controls)
+            {
+                if (c.Name.Contains("txthd") == true || c.Name.Contains("cbohd") == true)
+                    c.Enabled = b;
+            }
+        }
+
+        private string layloaihdtheoma(string ma)
+        {
+            cnhanvien.sc.Open();
+            string sql = "select maloaihd  from Tbl_chitiethopdong where SoHD='" + ma + "'";
+            SqlCommand cmd = new SqlCommand(sql, cnhanvien.sc);
+            object o = cmd.ExecuteScalar();
+            cnhanvien.sc.Close();
+            return o.ToString();
+        }
+
+        //tạo combobox loaihd
+        private void taocomboloaihd()
+        {
+            cbohdloaihd.DataSource = cdmhd.taocombohd();
+            cbohdloaihd.DisplayMember = "TenLoaiHD";
+            cbohdloaihd.ValueMember = "MaLoaiHD";
+            if (txthdmahd.Text != "")
+                cbohdloaihd.SelectedValue = int.Parse(layloaihdtheoma(txthdmahd.Text.Trim()));
+        }
+
+        //set bộ nút của tab hợp đồng
+        private void setcmdhd(bool b)
+        {
+            cmdhdthem.Enabled = b;
+            cmdhdCapnhat.Enabled = b;
+            cmdhdxoa.Enabled = b;
+            cmdhdluu.Enabled = !b;
+        }
+
+        //hiển thị dữ liệu của tab hợp đồng
+        private void HienThiTTHopDong(string ma)
+
+        {
+            dgv_ChiTietHopDong.DataSource = ccthopdong.laydl(ma);
+            dgv_ChiTietHopDong.DataMember = "NV_HopDong";
+
+            dgv_ChiTietHopDong.Columns[0].HeaderText = "Số hợp đồng";
+            dgv_ChiTietHopDong.Columns[3].HeaderText = "Loại hợp đồng";
+            dgv_ChiTietHopDong.Columns[4].HeaderText = "Ngày ký";
+            dgv_ChiTietHopDong.Columns[5].HeaderText = "Ngày kết thúc";
+            dgv_ChiTietHopDong.Columns[6].HeaderText = "Lương cơ bản";
+            dgv_ChiTietHopDong.Columns[1].IsVisible = false;
+            dgv_ChiTietHopDong.Columns[2].IsVisible = false;
+
+            if (ccthopdong.kiemtra(ma) == true)
+            {
+                txthdmahd.Text = ccthopdong.ds.Tables["NV_HopDong"].Rows[0]["SoHD"].ToString();
+                txthdngaykt.Text = sql.NgayToString(ccthopdong.ds.Tables["NV_HopDong"].Rows[0]["NgayKetThuc"].ToString());
+                txthdngayky.Text = sql.NgayToString(ccthopdong.ds.Tables["NV_HopDong"].Rows[0]["NgayKy"].ToString());
+                txthdluongcb.Text = ccthopdong.ds.Tables["NV_HopDong"].Rows[0]["LuongCoBan"].ToString();
+                //tạo combo
+                cbohdloaihd.DataSource = ccthopdong.laydl(ma);
+                cbohdloaihd.DisplayMember = "NV_HopDong.TenLoaiHD";
+                cbohdloaihd.ValueMember = "NV_HopDong.MaLoaiHD";
+            }
+            else
+            {
+                txthdmahd.Text = "";
+                txthdngaykt.Text = "";
+                txthdngayky.Text = "";
+                txthdluongcb.Text = "";
+            }
+        }
+        //lấy mã nhân viên tự động
+        private string laysohdtudong(string s)
+        {
+            string kq = "";
+            int so = int.Parse(s.Substring(2));
+            //if (so + 1 <= 99999999)
+            //    kq = "HD0" + (so + 1);
+            if (so + 1 < 100)
+                kq = "HD00" + (so + 1);
+            if (so + 1 < 1000 && so + 1 >= 100)
+                kq = "HD0" + (so + 1);
+            if (so + 1 < 10000 && so + 1 >= 1000)
+                kq = "HD" + (so + 1);
+            return kq;
+            //if (so + 1 < 1000000)
+            //    kq = "NV00" + (so + 1);
+            //if (so + 1 < 100000)
+            //    kq = "NV000" + (so + 1);
+            //if (so + 1 < 10000)
+            //    kq = "NV0000" + (so + 1);
+            //if (so + 1 < 1000)
+            //    kq = "NV00000" + (so + 1);
+            //if (so + 1 < 100)
+            //    kq = "NV000000" + (so + 1);
+            //if (so + 1 < 10)
+            //    kq = "NV0000000" + (so + 1);
+
+        }
+
+        private void txthdmahd_Validated(object sender, EventArgs e)
+        {
+            txthdmahd.Text = txthdmahd.Text.Trim().ToUpper();
+        }
+
+        private void cmdhdthem_Click(object sender, EventArgs e)
+        {
+
+            khd = 1;
+            setcontrolhd(true);
+            setlist(false);
+            taocomboloaihd();
+            setcmdhd(false);
+            txthdluongcb.Text = "";
+            txthdmahd.Text = "";
+            txthdngayky.Text = sql.NgayToString(DateTime.Today.ToString());
+            txthdngaykt.Text = sql.NgayToString(DateTime.Today.ToString());
+            cbohdloaihd.Focus();
+            if (int.Parse(laysohdtudong(ccthopdong.laysohd()).Substring(2)) > 1000)
+            {
+                RadMessageBox.Show("Chương trình chỉ được nhận dưới 1000 nhân viên", "Thông báo", MessageBoxButtons.OK, RadMessageIcon.Error);
+            }
+            else txthdmahd.Text = laysohdtudong(ccthopdong.laysohd());
+
+        }
+
+        private void cmdhdCapnhat_Click(object sender, EventArgs e)
+        {
+            if (txthdmanv.Text == "")
+                RadMessageBox.Show("\nBạn phải chọn nhân viên chấm công !\n", "Thông Báo", MessageBoxButtons.OK, RadMessageIcon.Exclamation);
+            else
+            {
+                khd = 2;
+                taocomboloaihd();
+                setcontrolhd(true);
+                setlist(false);
+                setcmdhd(false);
+                txthdmahd.ReadOnly = true;
+                cbohdloaihd.Focus();
+                txthdhotennv.ReadOnly = true;
+                txthdmanv.ReadOnly = true;
+            }
+
+        }
+
+        private void cmdhdxoa_Click(object sender, EventArgs e)
+        {
+            DialogResult rs = RadMessageBox.Show("\nBạn muốn xóa mẩu tin này không ?\n", "Thông Báo", MessageBoxButtons.YesNo, RadMessageIcon.Question);
+            if (rs == DialogResult.Yes)
+                ccthopdong.xoa(txthdmahd.Text.Trim());
+
+            HienThiTTHopDong(bienmanv);
+        }
+
+        private void cmdhdluu_Click(object sender, EventArgs e)
+        {
+            DialogResult rs = RadMessageBox.Show("\nBạn có muốn lưu thông tin này ? \n", "Thông báo", MessageBoxButtons.OKCancel, RadMessageIcon.Question);
+            if (rs == DialogResult.OK)
+            {
+                if (khd == 1)
+                {
+                    ccthopdong.them(txthdmahd.Text.Trim(),
+                                    int.Parse(cbohdloaihd.SelectedValue.ToString()),
+                                    txthdmanv.Text.Trim(),
+                                    sql.TraVeNgay(txthdngayky.Text.Trim(), 1),
+                                    sql.TraVeNgay(txthdngaykt.Text.Trim(), 1),
+                                    txthdluongcb.Text != "" ? int.Parse(txthdluongcb.Text.Trim()) : 0);
+                }
+                else if (khd == 2)
+                {
+                    ccthopdong.sua(txthdmahd.Text.Trim(),
+                                    int.Parse(cbohdloaihd.SelectedValue.ToString()),
+                                    txthdmanv.Text.Trim(),
+                                    sql.TraVeNgay(txthdngayky.Text.Trim(), 1),
+                                    sql.TraVeNgay(txthdngaykt.Text.Trim(), 1),
+                                    txthdluongcb.Text != "" ? int.Parse(txthdluongcb.Text.Trim()) : 0);
+                }
+            }
+            else
+            {
+                HienThiTTHopDong(bienmanv);
+
+            }
+
+            khd = 0;
+            setcmdhd(true);
+            setlist(true);
+            setcontrolhd(false);
+            txthdmahd.ReadOnly = false;
+            HienThiTTHopDong(bienmanv);
+        }
+
+        private void txthdluongcb_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Char.IsNumber(e.KeyChar))
+            {
+                RadMessageBox.Show("\nBạn phải nhập số\n", "Thông báo", MessageBoxButtons.OK, RadMessageIcon.Exclamation);
+            }
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            txthdngayky.Text = sql.NgayToString(textBox1.Text.Trim());
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+            txthdngaykt.Text = sql.NgayToString(textBox2.Text.Trim());
+        }
+
+        private void dgv_ChiTietHopDong_Click(object sender, EventArgs e)
+        {
+
+            //DataGridViewRow row = dgv_ChiTietHopDong.CurrentRow;
+
+            if (this.dgv_ChiTietHopDong.CurrentRow != null)
+            {
+
+
+                txthdmahd.Text = Convert.ToString(this.dgv_ChiTietHopDong.CurrentRow.Cells[0].Value);
+                //txthdngayky.Text = Convert.ToString(this.dgv_ChiTietHopDong.CurrentRow.Cells[4].Value);
+                txthdngayky.Text = sql.NgayToString(this.dgv_ChiTietHopDong.CurrentRow.Cells[4].Value.ToString());
+                //txthdngaykt.Text = Convert.ToString(this.dgv_ChiTietHopDong.CurrentRow.Cells[5].Value);
+                txthdngaykt.Text = sql.NgayToString(this.dgv_ChiTietHopDong.CurrentRow.Cells[5].ToString());
+                txthdluongcb.Text = Convert.ToString(this.dgv_ChiTietHopDong.CurrentRow.Cells[6].Value);
+            }
+
+        }
     }
 }
