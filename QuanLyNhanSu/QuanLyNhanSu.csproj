@@ -170,6 +170,12 @@
     <Compile Include="Classes\clsUser_Right.cs" />
     <Compile Include="Classes\readFile.cs" />
     <Compile Include="Classes\sql.cs" />
+    <Compile Include="frmchonbcluong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmchonbcluong.Designer.cs">
+      <DependentUpon>frmchonbcluong.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmchonbcnv.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -196,6 +202,9 @@
     <Compile Include="rptdsnvtheophong11.cs">
       <SubType>Component</SubType>
     </Compile>
+    <EmbeddedResource Include="frmchonbcluong.resx">
+      <DependentUpon>frmchonbcluong.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmchonbcnv.resx">
       <DependentUpon>frmchonbcnv.cs</DependentUpon>
     </EmbeddedResource>
