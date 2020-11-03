@@ -839,5 +839,152 @@ namespace QuanLyNhanSu
 
 
         }
+        //kiểm tra việc nhập ngày sinh
+        private void txtsyngaysinh_Validated(object sender, EventArgs e)
+        {
+            string s = txtsyngaysinh.Text.Trim();
+            if (s != "")
+            {
+                if (!sql.KiemTraNgay(s))
+                {
+                    RadMessageBox.Show("\nBạn đã nhập ngày sai, xin vui lòng kiểm tra lại !\n", "Thông báo", MessageBoxButtons.OK, RadMessageIcon.Exclamation);
+                    txtsyngaysinh.Text = "";
+                    txtsyngaysinh.Focus();
+                }
+            }
+            else
+            {
+                RadMessageBox.Show("\nBạn chưa nhập ngày, thông tin này không được bỏ trống !\n", "Thông báo", MessageBoxButtons.OK, RadMessageIcon.Exclamation);
+                txtsyngaysinh.Text = "";
+                txtsyngaysinh.Focus();
+            }
+        }
+
+        //kiểm tra việc nhập ngày vào làm
+        private void txtsyngayvl_Validated(object sender, EventArgs e)
+        {
+            string s = txtsyngayvl.Text.Trim();
+            if (s != "")
+            {
+                if (!sql.KiemTraNgay(s))
+                {
+                    RadMessageBox.Show("\nBạn nhập ngày sai, xin vui lòng xem lại !\n", "Thông báo", MessageBoxButtons.OK, RadMessageIcon.Exclamation);
+                    txtsyngayvl.Text = "";
+                    txtsyngayvl.Focus();
+                }
+            }
+            else
+            {
+                RadMessageBox.Show("\nBạn chưa nhập ngày vào làm, thông tin này không được bỏ trống  !\n", "Thông báo", MessageBoxButtons.OK, RadMessageIcon.Exclamation);
+                txtsyngayvl.Text = "";
+                txtsyngayvl.Focus();
+            }
+        }
+        //
+        //tab Trình độ
+        //
+
+        //Hiển thị dữ liệu vào trang kinh nghiệm
+        private void HienThiDLKN(string ma)
+        {
+            cngoaingu.CapNhatNN(ma);
+            cchuyenmon.CapNhatCM(ma);
+            dgv_ChitietCM.DataSource = cchuyenmon.ds;
+            dgv_ChitietCM.DataMember = "NV_ChuyenMon1";
+
+            dgv_ChitietNN.DataSource = cngoaingu.ds;
+            dgv_ChitietNN.DataMember = "NV_NgoaiNgu1";
+
+            //tạo combo ngoại ngữ trong dgv_ChiTietNN
+            GridViewComboBoxColumn grdCCNN = new GridViewComboBoxColumn("Tên ngoại ngữ", "mangoaingu");
+            grdCCNN.HeaderText = "Tên ngoại ngữ";
+            grdCCNN.Width = 140;
+            grdCCNN.DataSource = cdmnn.taocombonn();
+            grdCCNN.DisplayMember = "tenngoaingu";
+            grdCCNN.ValueMember = "mangoaingu";
+
+            dgv_ChitietNN.Columns.RemoveAt(2);
+            dgv_ChitietNN.Columns.Insert(2, grdCCNN);
+            dgv_ChitietNN.Columns[0].HeaderText = "ID";
+            dgv_ChitietNN.Columns[1].IsVisible = false;
+            dgv_ChitietNN.Columns[3].HeaderText = "Trình độ";
+            dgv_ChitietNN.Columns[4].HeaderText = "Nơi cấp";
+            dgv_ChitietNN.Columns[5].HeaderText = "Ngày cấp";
+            //dgv_ChitietNN.Columns[4].HeaderText = "ID";
+
+
+
+            //Tạo combo chuyên môn trong dgv_ChiTietChuyenMon
+            GridViewComboBoxColumn grdCCCM = new GridViewComboBoxColumn("Tên chuyên môn", "machuyenmon");
+            dgv_ChitietCM.Columns.RemoveAt(2);
+            dgv_ChitietCM.Columns.RemoveAt(2);
+            grdCCCM.HeaderText = "Tên chuyên môn";
+            grdCCCM.Width = 150;
+            grdCCCM.DataSource = cdmcm.taocombocm();
+            grdCCCM.DisplayMember = "tenchuyenmon";
+            grdCCCM.ValueMember = "machuyenmon";
+
+            dgv_ChitietCM.Columns[1].IsVisible = false;
+            dgv_ChitietCM.Columns.Insert(2, grdCCCM);
+            dgv_ChitietCM.Columns[3].HeaderText = "Ngày cấp";
+            dgv_ChitietCM.Columns[4].HeaderText = "Trường";
+
+            //Tạo combo trình độ trong dgv_ChiTietChuyenMon
+            GridViewComboBoxColumn grdCCTD = new GridViewComboBoxColumn("Tên Trình Độ", "matrinhdo");
+            grdCCTD.HeaderText = " Tên Trình Độ";
+            grdCCTD.Width = 140;
+            grdCCTD.DataSource = cdmtd.taocombotd();
+            grdCCTD.DisplayMember = "tentrinhdo";
+            grdCCTD.ValueMember = "matrinhdo";
+            dgv_ChitietCM.Columns.Insert(3, grdCCTD);
+
+
+        }
+
+        private void cmdcapnhatnn_Click(object sender, EventArgs e)
+        {
+            cngoaingu.sc.Open();
+            try
+            {
+
+                cngoaingu.sda.Update(cngoaingu.ds, "NV_ngoaingu1");
+            }
+            catch (SqlException ex)
+            {
+                if (ex.Number == 2627)
+                    RadMessageBox.Show("\nID này đang tồn tại, không thể cập nhật !\n", "Thông Báo", MessageBoxButtons.OK, RadMessageIcon.Error);
+                else
+                    RadMessageBox.Show("\nDữ liệu nhập vào không đúng,vui lòng kiểm tra lại !\n", "Thông Báo", MessageBoxButtons.OK, RadMessageIcon.Error);
+                //RadMessageBox.Show("\nKhông Thực Hiện Được\n", "Thông Báo");
+            }
+            cngoaingu.sc.Close();
+        }
+
+        private void cmdcapnhatbc_Click(object sender, EventArgs e)
+        {
+            cchuyenmon.sc.Open();
+            try
+            {
+                cchuyenmon.sda.Update(cchuyenmon.ds, "NV_ChuyenMon1");
+            }
+            catch (SqlException ex)
+            {
+                if (ex.Number == 2627)
+                    RadMessageBox.Show("\n ID này đang tồn tại, không thể cập nhật !\n", "Thông Báo", MessageBoxButtons.OK, RadMessageIcon.Error);
+                else
+                    RadMessageBox.Show("\n Dữ liệu nhập vào không được rỗng !\n Vui lòng kiểm tra lại !\n", "Thông Báo", MessageBoxButtons.OK, RadMessageIcon.Error);
+            }
+            cchuyenmon.sc.Close();
+        }
+
+        private void dgv_ChitietNN_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            if (e != null) RadMessageBox.Show("  \n Bạn đã nhập sai kiểu dữ liệu \n Xem hướng đẫn phần tên cột\n", "Thông báo");
+        }
+
+        private void dgv_ChitietCM_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            if (e != null) RadMessageBox.Show("  \n Bạn đã nhập sai kiểu dữ liệu \n Xem hướng đẫn phần tên cột\n", "Thông báo");
+        }
     }
 }
