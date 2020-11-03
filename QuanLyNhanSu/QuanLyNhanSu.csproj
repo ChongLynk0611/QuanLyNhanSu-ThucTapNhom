@@ -141,6 +141,35 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\BusinessCardElement.cs" />
+    <Compile Include="Classes\clsbangluong.cs" />
+    <Compile Include="Classes\clschitietchuyenmon.cs" />
+    <Compile Include="Classes\clschitiethopdong.cs" />
+    <Compile Include="Classes\clschitietngoaingu.cs" />
+    <Compile Include="Classes\clsdm.cs" />
+    <Compile Include="Classes\clsdmchucvu.cs" />
+    <Compile Include="Classes\clsdmchuyenmon.cs" />
+    <Compile Include="Classes\clsDMDanToc.cs" />
+    <Compile Include="Classes\clsdmform.cs" />
+    <Compile Include="Classes\clsdmhd.cs" />
+    <Compile Include="Classes\clsdmngoaingu.cs" />
+    <Compile Include="Classes\clsdmpb.cs" />
+    <Compile Include="Classes\clsDMTo.cs" />
+    <Compile Include="Classes\clsdmtongiao.cs" />
+    <Compile Include="Classes\clsdmtrinhdo.cs" />
+    <Compile Include="Classes\clshieuqua.cs" />
+    <Compile Include="Classes\clshosoluong.cs" />
+    <Compile Include="Classes\clsnhanvien.cs" />
+    <Compile Include="Classes\clsnhomnguoidung.cs" />
+    <Compile Include="Classes\clsQuanHeGD.cs" />
+    <Compile Include="Classes\clsTiLeLuong.cs" />
+    <Compile Include="Classes\clstimngoaingu.cs" />
+    <Compile Include="Classes\clstimtttrinhdo.cs" />
+    <Compile Include="Classes\clstkhopdong.cs" />
+    <Compile Include="Classes\clsUser.cs" />
+    <Compile Include="Classes\clsUser_Right.cs" />
+    <Compile Include="Classes\readFile.cs" />
+    <Compile Include="Classes\sql.cs" />
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
