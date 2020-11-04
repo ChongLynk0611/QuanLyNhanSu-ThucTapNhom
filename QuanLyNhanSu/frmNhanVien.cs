@@ -1468,5 +1468,400 @@ namespace QuanLyNhanSu
 
 
         }
+        private void cmdqhThem_Click(object sender, EventArgs e)
+        {
+            foreach (Control c in grpThongTinQH.Controls)
+            {
+                if (c.Name.Contains("txtqh") == true)
+                {
+                    if (c.Name == "txtqhMaNV")
+                    {
+                    }
+                    else if (c.Name == "txtqhHoTenNV")
+                    {
+                    }
+                    else
+                    {
+                        c.Text = "";
+                    }
+
+                }
+
+            }
+
+            this.lstNhanvien.Enabled = false;
+            this.cmdqhThem.Enabled = false;
+            this.grpThongTinQH.Enabled = true;
+            this.txtqhMaNV.Enabled = false;
+            this.txtqhHoTenNV.Enabled = false;
+
+            cmdqhLuu.Enabled = true;
+            cmdqhCapNhat.Enabled = false;
+            cmdqhIn.Enabled = false;
+            cmdqhXoa.Enabled = false;
+            kqh = 1;
+        }
+
+        private void cmdqhLuu_Click(object sender, EventArgs e)
+        {
+            string strTinhTrang = "";
+            string strLaNhanVienCongTy = "";
+            if (this.cboqhTinhTrang.SelectedIndex == 1)
+            {
+
+                strTinhTrang = "Đã chết";
+
+            }
+            else
+            {
+
+                strTinhTrang = "Còn sống";
+            }
+            if (this.cboqhNhanVienCT.SelectedIndex == 1)
+            {
+
+                strLaNhanVienCongTy = "Không";
+
+            }
+            else
+            {
+
+                strLaNhanVienCongTy = "Có";
+            }
+
+            if (RadMessageBox.Show("\nBạn có muốn lưu thông tin này ?\n", "Thông báo", MessageBoxButtons.YesNo, RadMessageIcon.Question) == DialogResult.Yes)
+            {
+
+                try
+                {
+                    if (this.txtqhTenNguoiThan.Text.Trim() != String.Empty && this.txtqhHoNguoiThan.Text.Trim() != String.Empty)
+                    {
+                        if (this.optqhNam.IsChecked != false || this.optqhNu.IsChecked != false)
+                        {
+                            if (this.optqhNam.IsChecked != false)
+                            {
+
+                                if (kqh == 1)
+                                {
+
+                                    cQuanHeGD.them(
+                                    this.txtqhMaNV.Text.Trim(),
+                                    this.txtqhHoNguoiThan.Text.Trim(),
+                                    this.txtqhTenNguoiThan.Text.Trim(),
+                                    "1",
+                                    this.txtqhLoai.Text.Trim(),
+                                    txtqhNgaySinh.Text.Trim() == "" ? DateTime.Today : sql.TraVeNgay(txtsyngaysinh.Text.Trim(), 1),
+                                    txtqhDiaChiTT.Text.Trim(),
+                                    txtqhChoHT.Text.Trim(),
+                                    txtqhDienThoai.Text.Trim(),
+                                    txtqhNgheNghiep.Text.Trim(),
+                                    txtqhNoiCongTac.Text.Trim(),
+                                    strTinhTrang,
+                                    strLaNhanVienCongTy,
+                                    txtqhGhiChu.Text.Trim());
+
+                                }
+                                else
+                                {
+                                    cQuanHeGD.sua(
+                                        Int32.Parse(this.dgv_QuanHeGiaDinh.CurrentRow.Cells[2].Value.ToString()),
+                                        this.txtqhMaNV.Text.Trim(),
+                                        this.txtqhHoNguoiThan.Text.Trim(),
+                                        this.txtqhTenNguoiThan.Text.Trim(),
+                                        "1",
+                                        this.txtqhLoai.Text.Trim(),
+                                        txtqhNgaySinh.Text.Trim() == "" ? DateTime.Today : sql.TraVeNgay(txtsyngaysinh.Text.Trim(), 1),
+                                        txtqhDiaChiTT.Text.Trim(),
+                                        txtqhChoHT.Text.Trim(),
+                                        txtqhDienThoai.Text.Trim(),
+                                        txtqhNgheNghiep.Text.Trim(),
+                                        txtqhNoiCongTac.Text.Trim(),
+                                        strTinhTrang,
+                                        strLaNhanVienCongTy,
+                                        txtqhGhiChu.Text.Trim());
+                                }
+                            }
+                            else
+                            {
+                                if (kqh == 1)
+                                {
+                                    cQuanHeGD.them(
+                                        this.txtqhMaNV.Text.Trim(),
+                                        this.txtqhHoNguoiThan.Text.Trim(),
+                                        this.txtqhTenNguoiThan.Text.Trim(),
+                                        "0",
+                                        this.txtqhLoai.Text.Trim(),
+                                        txtqhNgaySinh.Text.Trim() == "" ? DateTime.Today : sql.TraVeNgay(txtsyngaysinh.Text.Trim(), 1),
+                                        txtqhDiaChiTT.Text.Trim(),
+                                        txtqhChoHT.Text.Trim(),
+                                        txtqhDienThoai.Text.Trim(),
+                                        txtqhNgheNghiep.Text.Trim(),
+                                        txtqhNoiCongTac.Text.Trim(),
+                                        strTinhTrang,
+                                        strLaNhanVienCongTy,
+                                        txtqhGhiChu.Text.Trim());
+                                }
+                                else
+                                {
+                                    cQuanHeGD.sua(Int32.Parse(this.dgv_QuanHeGiaDinh.CurrentRow.Cells[2].Value.ToString()),
+                                        this.txtqhMaNV.Text.Trim(),
+                                        this.txtqhHoNguoiThan.Text.Trim(),
+                                        this.txtqhTenNguoiThan.Text.Trim(),
+                                        "0",
+                                        this.txtqhLoai.Text.Trim(),
+                                        txtqhNgaySinh.Text.Trim() == "" ? DateTime.Today : sql.TraVeNgay(txtsyngaysinh.Text.Trim(), 1),
+                                        txtqhDiaChiTT.Text.Trim(),
+                                        txtqhChoHT.Text.Trim(),
+                                        txtqhDienThoai.Text.Trim(),
+                                        txtqhNgheNghiep.Text.Trim(),
+                                        txtqhNoiCongTac.Text.Trim(),
+                                        strTinhTrang,
+                                        strLaNhanVienCongTy,
+                                        txtqhGhiChu.Text.Trim());
+                                }
+                            }
+                        }
+                        else
+                        {
+                            RadMessageBox.Show("\nKhông được bỏ trống thông tin Giới tính !\n", "Thông báo", MessageBoxButtons.OK, RadMessageIcon.Exclamation);
+                        }
+                    }
+                    else
+                    {
+                        RadMessageBox.Show("\nKhông được bỏ trống thông tin Họ và Tên !\n", "Thông báo", MessageBoxButtons.OK, RadMessageIcon.Exclamation);
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    RadMessageBox.Show(ex.ToString());
+                }
+
+
+
+                this.grpThongTinQH.Enabled = false;
+
+                cmdqhThem.Enabled = true;
+                cmdqhCapNhat.Enabled = true;
+                cmdqhIn.Enabled = true;
+                cmdqhXoa.Enabled = true;
+
+                cQuanHeGD.laydl(this.txtqhMaNV.Text);
+                dgv_QuanHeGiaDinh.DataSource = cQuanHeGD.ds;
+                dgv_QuanHeGiaDinh.DataMember = "quanhe";
+
+
+            }
+            else
+            {
+                HienThiTTQuanHe(bienmanv);
+            }
+            this.cmdqhCapNhat.Enabled = true;
+            this.cmdqhLuu.Enabled = false;
+            this.cmdqhThem.Enabled = true;
+            this.cmdqhIn.Enabled = true;
+            this.lstNhanvien.Enabled = true;
+            this.grpThongTinQH.Enabled = false;
+
+        }
+
+        Class.clsQuanHeGD cQuanHeGD = new clsQuanHeGD();
+        private void HienThiTTQuanHe(string ma)
+        {
+            foreach (Control c in grpThongTinQH.Controls)
+                if (c.Name.Contains("txtqh") == true)
+                {
+                    c.Text = "";
+                }
+            cQuanHeGD.laydl(ma);
+
+
+            this.dgv_QuanHeGiaDinh.DataSource = cQuanHeGD.ds;
+            this.dgv_QuanHeGiaDinh.DataMember = "quanhe";
+
+            this.dgv_QuanHeGiaDinh.Columns[0].IsVisible = false;
+            this.dgv_QuanHeGiaDinh.Columns[1].IsVisible = false;
+            this.dgv_QuanHeGiaDinh.Columns[2].IsVisible = false;
+
+            this.dgv_QuanHeGiaDinh.Columns[3].IsVisible = false;
+            this.dgv_QuanHeGiaDinh.Columns[4].HeaderText = "Họ";
+            this.dgv_QuanHeGiaDinh.Columns[5].HeaderText = "Tên";
+            this.dgv_QuanHeGiaDinh.Columns[6].HeaderText = "Giới tính";
+            this.dgv_QuanHeGiaDinh.Columns[7].HeaderText = "Loại quan hệ";
+
+            this.dgv_QuanHeGiaDinh.Columns[8].HeaderText = "Ngày sinh";
+            this.dgv_QuanHeGiaDinh.Columns[9].HeaderText = "Hộ khẩu TT";
+            this.dgv_QuanHeGiaDinh.Columns[10].HeaderText = "Chổ ở HT";
+            this.dgv_QuanHeGiaDinh.Columns[11].HeaderText = "Điện thoại";
+            this.dgv_QuanHeGiaDinh.Columns[12].HeaderText = "Nghề nghiệp";
+            this.dgv_QuanHeGiaDinh.Columns[13].HeaderText = "Nơi công tác";
+            this.dgv_QuanHeGiaDinh.Columns[14].HeaderText = "Tình Trạng";
+            this.dgv_QuanHeGiaDinh.Columns[15].HeaderText = "Là nhân viên CTy";
+            this.dgv_QuanHeGiaDinh.Columns[16].HeaderText = "Ghi chú";
+
+            for (int i = 0; i < dgv_QuanHeGiaDinh.Columns.Count; i++)
+            {
+                dgv_QuanHeGiaDinh.Columns[i].BestFit();
+            }
+
+
+
+
+        }
+        private void HienThiTTQuanHeTheoMaQH(int MaQH, string MaNV)
+        {
+
+            cQuanHeGD.laydl_(MaQH, MaNV);
+            //
+            //lấy dữ liệu vào các textbox
+            //
+            try
+            {
+                txtqhMaNV.Text = cQuanHeGD.ds1.Tables["quanhe"].Rows[0]["MaNV"].ToString();
+                txtqhHoTenNV.Text = cQuanHeGD.ds1.Tables["quanhe"].Rows[0]["HoNV"].ToString() + " " + cQuanHeGD.ds1.Tables["quanhe"].Rows[0]["TenNV"].ToString();
+                txtqhHoNguoiThan.Text = cQuanHeGD.ds1.Tables["quanhe"].Rows[0]["Ho"].ToString();
+                txtqhTenNguoiThan.Text = cQuanHeGD.ds1.Tables["quanhe"].Rows[0]["Ten"].ToString();
+                txtqhLoai.Text = cQuanHeGD.ds1.Tables["quanhe"].Rows[0]["LoaiQuanHe"].ToString();
+                txtqhNgaySinh.Text = sql.NgayToString(cQuanHeGD.ds.Tables["quanhe"].Rows[0]["NgaySinh"].ToString());
+                txtqhDiaChiTT.Text = cQuanHeGD.ds1.Tables["quanhe"].Rows[0]["HoKhauTT"].ToString();
+                txtqhChoHT.Text = cQuanHeGD.ds.Tables["quanhe"].Rows[0]["HoKhauTT"].ToString();
+                txtqhDienThoai.Text = cQuanHeGD.ds1.Tables["quanhe"].Rows[0]["DienThoai"].ToString();
+                txtqhDiaChiTT.Text = cQuanHeGD.ds1.Tables["quanhe"].Rows[0]["HoKhauTT"].ToString();
+                txtqhNgheNghiep.Text = cQuanHeGD.ds1.Tables["quanhe"].Rows[0]["NgheNghiep"].ToString();
+                txtqhNoiCongTac.Text = cQuanHeGD.ds1.Tables["quanhe"].Rows[0]["NoiCongTac"].ToString();
+                txtqhGhiChu.Text = cQuanHeGD.ds1.Tables["quanhe"].Rows[0]["GhiChu"].ToString();
+
+                if (cQuanHeGD.ds1.Tables["quanhe"].Rows[0]["ConSong"].ToString().Trim() == "Còn sống")
+                {
+                    cboqhTinhTrang.SelectedIndex = 0;
+                }
+                else
+                {
+                    cboqhTinhTrang.SelectedIndex = 1;
+                }
+
+                if (cQuanHeGD.ds1.Tables["quanhe"].Rows[0]["NhanVienCongTy"].ToString().Trim() == "Có")
+
+                    cboqhNhanVienCT.SelectedIndex = 0;
+                else
+                    cboqhNhanVienCT.SelectedIndex = 1;
+
+
+                //
+                //lấy dữ liệu vào optgioitinh
+                //
+                if (cQuanHeGD.ds1.Tables["quanhe"].Rows[0]["GioiTinh"].ToString() == "1")
+                    optqhNam.IsChecked = true;
+                else
+                    optqhNu.IsChecked = true;
+
+
+
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        private void cmdqhCapNhat_Click(object sender, EventArgs e)
+        {
+            this.lstNhanvien.Enabled = false;
+            this.grpThongTinQH.Enabled = true;
+            this.txtqhMaNV.Enabled = false;
+            this.txtqhHoTenNV.Enabled = false;
+
+            this.cmdqhThem.Enabled = false;
+            this.cmdqhXoa.Enabled = false;
+            this.cmdqhCapNhat.Enabled = false;
+
+            this.cmdqhLuu.Enabled = true;
+            kqh = 0;
+        }
+
+        private void dgv_QuanHeGiaDinh_CurrentRowChanged(object sender, CurrentRowChangedEventArgs e)
+        {
+            HienThiTTQuanHeTheoMaQH(Int32.Parse(e.CurrentRow.Cells[2].Value.ToString()), e.CurrentRow.Cells[3].Value.ToString());
+            //MessageBox.Show(e.CurrentRow.Cells[2].Value.ToString());
+        }
+
+        //Tra cứu thông tin
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
+            Form frm = KiemTraTonTai(typeof(frmtracuutt));
+            if (frm != null)
+                frm.Activate();
+            else
+            {
+                frmtracuutt f = new frmtracuutt();
+                f.MdiParent = this.MdiParent;
+                f.Show();
+            }
+        }
+
+        private void cmdqhXoa_Click(object sender, EventArgs e)
+        {
+            string id = this.dgv_QuanHeGiaDinh.CurrentRow.Cells[2].Value.ToString();
+            //MessageBox.Show(id);
+            if (RadMessageBox.Show("\n Bạn thực sự muốn xóa thông tin này ?\n", "Thông báo", MessageBoxButtons.YesNo, RadMessageIcon.Question) == DialogResult.Yes)
+            {
+                cQuanHeGD.xoa(Int32.Parse(id));
+                HienThiTTQuanHe(this.txtqhMaNV.Text);
+            }
+            else
+            {
+            }
+
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.grpThongTinQH.Enabled = false;
+
+            cmdqhThem.Enabled = true;
+            cmdqhCapNhat.Enabled = true;
+            cmdqhIn.Enabled = true;
+            cmdqhXoa.Enabled = true;
+
+            cQuanHeGD.laydl(this.txtqhMaNV.Text);
+            dgv_QuanHeGiaDinh.DataSource = cQuanHeGD.ds;
+            dgv_QuanHeGiaDinh.DataMember = "quanhe";
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            HienthiTTNhanVien(bienmanv);
+            ksy = 0;
+            setcontrolsy(false);
+            setlist(true);
+            setcmd(true);
+            lstNhanvien.Items.Clear();
+            HienThiListNV(cPhong.laydlList(cboPhong.SelectedValue.ToString()), lstNhanvien);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            HienThiTTHopDong(bienmanv);
+            khd = 0;
+            setcmdhd(true);
+            setlist(true);
+            setcontrolhd(false);
+            txthdmahd.ReadOnly = false;
+            HienThiTTHopDong(bienmanv);
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            HienThiTTHoSoLuong(bienmanv);
+            kluong = 0;
+            setcmdhsl(true);
+            setlist(true);
+            setcontrolhsl(false);
+            HienThiTTHoSoLuong(bienmanv);
+        }
+
     }
 }
