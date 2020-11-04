@@ -93,7 +93,55 @@ namespace QuanLyNhanSu
             cboto.ValueMember = "DanhMucto.mato";
             cboto.Text = "";
         }
-        
+        private void cmdin_Click(object sender, EventArgs e)
+        {
+            thangbc = ""; thangbh = ""; nambc = ""; nambh = ""; maphong = ""; mato = "";
+            if (kiemtra(cbothangbc.Text.Trim(), cbonambc.Text.Trim()) == true)
+            {
+                thangbc = cbothangbc.Text.Trim();
+                nambc = cbonambc.Text.Trim();
+                if (cboto.Text.Trim() == "")
+                {
+                    maphong = cbophong.SelectedValue.ToString();
+                    frmrptluongtheophong f = new frmrptluongtheophong();
+                    f.MdiParent = this.MdiParent;
+                    f.Show();
+                }
+                else
+                {
+                    mato = cboto.SelectedValue.ToString();
+                    maphong = cbophong.SelectedValue.ToString();
+                    frmrptluongtheophong f = new frmrptluongtheophong();
+                    f.MdiParent = this.MdiParent;
+                    f.Show();
+                }
+            }
+            else
+            {
+                RadMessageBox.Show("\nKhông có dữ liệu bảng lương này !\n", "Thông báo", MessageBoxButtons.OK, RadMessageIcon.Error);
+            }
+        }
+
+        private void frmchonbcluong_Load(object sender, EventArgs e)
+        {
+            thangbc = ""; thangbh = ""; nambc = ""; nambh = ""; maphong = ""; mato = "";
+        }
+
+        private void cmdinbh_Click(object sender, EventArgs e)
+        {
+            if (kiemtra(cbothangbh.Text.Trim(), cbonambh.Text.Trim()) == true)
+            {
+                thangbh = cbothangbh.Text.Trim();
+                nambh = cbonambh.Text.Trim();
+                frmrptbcbh f = new frmrptbcbh();
+                f.MdiParent = this.MdiParent;
+                f.Show();
+            }
+            else
+            {
+                RadMessageBox.Show("\nBạn chưa có bảng lương tháng này ! \n      Nên không có bảng báo cáo !\n", "Thông báo", MessageBoxButtons.OK, RadMessageIcon.Error);
+            }
+        }
 
 
     }
