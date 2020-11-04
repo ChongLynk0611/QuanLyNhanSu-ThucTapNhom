@@ -1220,5 +1220,253 @@ namespace QuanLyNhanSu
             }
 
         }
+        //kiểm tra việc nhập ngày ký 
+        private void txthdngayky_Validated(object sender, EventArgs e)
+        {
+            string s = txthdngayky.Text.Trim();
+            if (s != "")
+            {
+                if (!sql.KiemTraNgay(s))
+                {
+                    RadMessageBox.Show("\nBạn nhập ngày sai! \n", "Thông báo", MessageBoxButtons.OK, RadMessageIcon.Exclamation);
+                    txthdngayky.Text = "";
+                    txthdngayky.Focus();
+                }
+            }
+            else
+            {
+                RadMessageBox.Show("\nBạn chưa nhập ngày! \n", "Thông báo", MessageBoxButtons.OK, RadMessageIcon.Exclamation);
+                txthdngayky.Text = "";
+                txthdngayky.Focus();
+            }
+
+        }
+
+        //kiểm tra việc nhập ngày kết thúc hợp đồng
+        private void txthdngaykt_Validated(object sender, EventArgs e)
+        {
+            string s = txthdngaykt.Text.Trim();
+            if (s != "")
+            {
+                if (!sql.KiemTraNgay(s))
+                {
+                    RadMessageBox.Show("\nBạn nhập ngày sai !\n", "Thông báo", MessageBoxButtons.OK, RadMessageIcon.Exclamation);
+                    txthdngaykt.Text = "";
+                    txthdngaykt.Focus();
+                }
+                else
+                    if (sql.TraVeNgay(s, 1) <= sql.TraVeNgay(txthdngayky.Text.Trim(), 1))
+                {
+                    RadMessageBox.Show("\nNgày kết thúc phải sau ngày ký hợp đồng !\n", "Thông báo", MessageBoxButtons.OK, RadMessageIcon.Exclamation);
+                }
+            }
+            else
+            {
+                MessageBox.Show("\nBạn chưa nhập ngày ! \n", "Thông báo");
+                txthdngaykt.Text = "";
+                txthdngaykt.Focus();
+            }
+        }
+        //
+        //tab ho so luong
+        //
+        //set bộ nút của tab hồ sơ lương
+        private void setcmdhsl(bool b)
+        {
+            cmdluongthem.Enabled = b;
+            cmdluongcapnhat.Enabled = b;
+            cmdluongxoa.Enabled = b;
+            cmdluongluu.Enabled = !b;
+        }
+
+        //setcontrol tab hồ sơ lương 
+        private void setcontrolhsl(bool b)
+        {
+            txthslmucluong.Enabled = b;
+            txthslngayll.Enabled = b;
+            cbohslsohd.Enabled = b;
+        }
+
+        //tạo combo số hợp đồng
+        private void taocombosohd(string ma)
+        {
+            cbohslsohd.DataSource = chsluong.taocombo(ma);
+            cbohslsohd.DisplayMember = "sohd";
+            cbohslsohd.ValueMember = "sohd";
+            if (txthslngayll.Text != "")
+                cbohslsohd.SelectedValue = dgv_Hosoluong.CurrentRow.Cells[0].Value.ToString();
+        }
+
+        //hiển thị dữ liệu của tab hồ sơ lương
+        private void HienThiTTHoSoLuong(string ma)
+        {
+            dgv_Hosoluong.DataSource = chsluong.laydl(ma);
+            dgv_Hosoluong.Columns[0].HeaderText = "Số hợp đồng";
+            dgv_Hosoluong.Columns[1].HeaderText = "Ngày lãnh lương";
+            dgv_Hosoluong.Columns[2].HeaderText = "Mức lương";
+
+            if (chsluong.kiemtra(ma) == true)
+            {
+
+                txthslngayll.Text = sql.NgayToString(chsluong.laydl(ma).Rows[0]["ngayll"].ToString());
+                txthslmucluong.Text = chsluong.laydl(ma).Rows[0]["mucluong"].ToString();
+                //tạo combo
+                cbohslsohd.DataSource = chsluong.taocombohd(ma);
+                cbohslsohd.DisplayMember = "sohd";
+                cbohslsohd.ValueMember = "sohd";
+            }
+            else
+            {
+                txthslmucluong.Text = "";
+                txthslngayll.Text = "";
+                cbohslsohd.Text = "";
+            }
+        }
+        //
+        private void dgv_Hosoluong_Click(object sender, EventArgs e)
+        {
+            //DataGridViewRow row = dgv_Hosoluong.CurrentRow;
+
+            if (this.dgv_Hosoluong.CurrentRow != null)
+            {
+                cbohslsohd.Text = Convert.ToString(this.dgv_Hosoluong.CurrentRow.Cells[0].Value);
+                textBox3.Text = Convert.ToString(this.dgv_Hosoluong.CurrentRow.Cells[1].Value);
+                txthslmucluong.Text = Convert.ToString(this.dgv_Hosoluong.CurrentRow.Cells[2].Value);
+            }
+        }
+        //
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+            txthslngayll.Text = sql.NgayToString(textBox3.Text.Trim());
+        }
+        //
+        private void cmdluongthem_Click(object sender, EventArgs e)
+        {
+            setlist(false);
+            taocombosohd(bienmanv);
+            setcmdhsl(false);
+            setcontrolhsl(true);
+            txthslngayll.Text = sql.NgayToString(DateTime.Today.ToString());
+            txthslmucluong.Text = "0";
+            cbohslsohd.Focus();
+            kluong = 1;
+        }
+        //
+        private void cmdluongxoa_Click(object sender, EventArgs e)
+        {
+            DialogResult rs = RadMessageBox.Show("\nBạn muốn xóa mẩu tin này không ?\n", "Thông Báo", MessageBoxButtons.YesNo, RadMessageIcon.Question);
+            RadMessageBox.Show(cbohslsohd.SelectedValue.ToString() + " " + sql.TraVeNgay(txthslngayll.Text.Trim(), 1), "Thông báo");
+            if (rs == DialogResult.Yes)
+            {
+                try
+                {
+
+                    chsluong.xoa(cbohslsohd.SelectedValue.ToString(), sql.TraVeNgay(this.txthslngayll.Text, 1));
+                }
+                catch (Exception ex)
+                {
+                    RadMessageBox.Show(cbohslsohd.SelectedValue.ToString() + " " + sql.TraVeNgay(txthslngayll.Text.Trim(), 1), "Thông báo");
+                }
+            }
+            HienThiTTHoSoLuong(bienmanv);
+        }
+        //Cập nhật hồ sơ lương.
+        private void cmdluongcapnhat_Click(object sender, EventArgs e)
+        {
+            if (txthslmanv.Text == "")
+                RadMessageBox.Show("\nBạn phải chọn nhân viên chấm công !\n", "Thông Báo", MessageBoxButtons.OK, RadMessageIcon.Exclamation);
+            else
+            {
+                kluong = 2;
+                taocombosohd(bienmanv);
+                setlist(false);
+                setcmdhsl(false);
+                txthslmucluong.Enabled = true;
+                txthslmucluong.Focus();
+            }
+
+        }
+        //
+        private void cmdluongluu_Click(object sender, EventArgs e)
+        {
+            DialogResult rs = RadMessageBox.Show("\nBạn có muốn lưu thông tin này !\n", "Thông báo", MessageBoxButtons.OKCancel, RadMessageIcon.Exclamation);
+            if (rs == DialogResult.OK)
+            {
+                try
+                {
+                    if (kluong == 1)
+                    {
+                        chsluong.them(cbohslsohd.SelectedValue.ToString(),
+                                      sql.TraVeNgay(txthslngayll.Text.Trim(), 1),
+                                      txthslmucluong.Text != "" ? int.Parse(txthslmucluong.Text.Trim()) : 0);
+                    }
+                    else if (kluong == 2)
+                    {
+                        chsluong.sua(cbohslsohd.SelectedValue.ToString(),
+                                       sql.TraVeNgay(txthslngayll.Text.Trim(), 1),
+                                       txthslmucluong.Text != "" ? int.Parse(txthslmucluong.Text.Trim()) : 0);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    RadMessageBox.Show("\nDữ liệu nhập vào không đúng !\n Vui lòng kiểm tra lại !\n", "Thông báo", MessageBoxButtons.OK, RadMessageIcon.Error);
+                }
+            }
+            else
+            {
+                HienThiTTHoSoLuong(bienmanv);
+            }
+            kluong = 0;
+            setcmdhsl(true);
+            setlist(true);
+            setcontrolhsl(false);
+            HienThiTTHoSoLuong(bienmanv);
+        }
+        private Form KiemTraTonTai(Type formType)
+        {
+            foreach (Form f in this.MdiParent.MdiChildren)
+            {
+                if (f.GetType() == formType)
+                    return f;
+            }
+            return null;
+        }
+
+        private void txttkmanv_TextChanged(object sender, EventArgs e)
+        {
+            string ma = txttkmanv.Text.Trim();
+            lstNhanvien.Items.Clear();
+            this.cboPhong.SelectedText = this.cboPhong.SelectedText;
+
+            HienThiListNV(cnhanvien.timkiem(ma), lstNhanvien);
+        }
+        //In nhân viên
+        private void btnInNhanvien_Click(object sender, EventArgs e)
+        {
+            if (txtsymanv.Text == "")
+            {
+                RadMessageBox.Show("\nBạn phải chọn nhân viên để in !\n", "Thông báo", MessageBoxButtons.OK, RadMessageIcon.Exclamation);
+            }
+            else
+            {
+                bienmanv = txtsymanv.Text.Trim();
+                frmrpthsnhanvien f = new frmrpthsnhanvien();
+                f.MdiParent = this.MdiParent;
+                f.Show();
+            }
+        }
+
+        private void txtsydtdd_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+            if (!Char.IsDigit(e.KeyChar) && !Char.IsControl(e.KeyChar))
+            {
+                RadMessageBox.Show("\nChỉ được phép nhập số vào ô thông tin này !\n", "Thông báo", MessageBoxButtons.OK, RadMessageIcon.Exclamation);
+                e.Handled = true;
+            }
+
+
+
+        }
     }
 }
