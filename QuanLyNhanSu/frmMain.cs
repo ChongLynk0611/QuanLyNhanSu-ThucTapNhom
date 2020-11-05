@@ -9,7 +9,7 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using Telerik.WinControls;
 using Telerik.Data;
-
+using QuanLyNhanSu.Class;
 
 namespace QuanLyNhanSu
 {

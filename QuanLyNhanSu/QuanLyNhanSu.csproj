@@ -141,56 +141,130 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
-<<<<<<< HEAD
-    <Compile Include="Classes\BusinessCardElement.cs" />
-    <Compile Include="Classes\clsbangluong.cs" />
-    <Compile Include="Classes\clschitietchuyenmon.cs" />
-    <Compile Include="Classes\clschitiethopdong.cs" />
-    <Compile Include="Classes\clschitietngoaingu.cs" />
-    <Compile Include="Classes\clsdm.cs" />
-    <Compile Include="Classes\clsdmchucvu.cs" />
-    <Compile Include="Classes\clsdmchuyenmon.cs" />
-    <Compile Include="Classes\clsDMDanToc.cs" />
-    <Compile Include="Classes\clsdmform.cs" />
-    <Compile Include="Classes\clsdmhd.cs" />
-    <Compile Include="Classes\clsdmngoaingu.cs" />
-    <Compile Include="Classes\clsdmpb.cs" />
-    <Compile Include="Classes\clsDMTo.cs" />
-    <Compile Include="Classes\clsdmtongiao.cs" />
-    <Compile Include="Classes\clsdmtrinhdo.cs" />
-    <Compile Include="Classes\clshieuqua.cs" />
-    <Compile Include="Classes\clshosoluong.cs" />
-    <Compile Include="Classes\clsnhanvien.cs" />
-    <Compile Include="Classes\clsnhomnguoidung.cs" />
-    <Compile Include="Classes\clsQuanHeGD.cs" />
-    <Compile Include="Classes\clsTiLeLuong.cs" />
-    <Compile Include="Classes\clstimngoaingu.cs" />
-    <Compile Include="Classes\clstimtttrinhdo.cs" />
-    <Compile Include="Classes\clstkhopdong.cs" />
-    <Compile Include="Classes\clsUser.cs" />
-    <Compile Include="Classes\clsUser_Right.cs" />
-    <Compile Include="Classes\readFile.cs" />
-    <Compile Include="Classes\sql.cs" />
+    <Compile Include="Class\BusinessCardElement.cs" />
+    <Compile Include="Class\clsbangluong.cs" />
+    <Compile Include="Class\clschitietchuyenmon.cs" />
+    <Compile Include="Class\clschitiethopdong.cs" />
+    <Compile Include="Class\clschitietngoaingu.cs" />
+    <Compile Include="Class\clsdm.cs" />
+    <Compile Include="Class\clsdmchucvu.cs" />
+    <Compile Include="Class\clsdmchuyenmon.cs" />
+    <Compile Include="Class\clsDMDanToc.cs" />
+    <Compile Include="Class\clsdmform.cs" />
+    <Compile Include="Class\clsdmhd.cs" />
+    <Compile Include="Class\clsdmngoaingu.cs" />
+    <Compile Include="Class\clsdmpb.cs" />
+    <Compile Include="Class\clsDMTo.cs" />
+    <Compile Include="Class\clsdmtongiao.cs" />
+    <Compile Include="Class\clsdmtrinhdo.cs" />
+    <Compile Include="Class\clshieuqua.cs" />
+    <Compile Include="Class\clshosoluong.cs" />
+    <Compile Include="Class\clsnhanvien.cs" />
+    <Compile Include="Class\clsnhomnguoidung.cs" />
+    <Compile Include="Class\clsQuanHeGD.cs" />
+    <Compile Include="Class\clsTiLeLuong.cs" />
+    <Compile Include="Class\clstimngoaingu.cs" />
+    <Compile Include="Class\clstimtttrinhdo.cs" />
+    <Compile Include="Class\clstkhopdong.cs" />
+    <Compile Include="Class\clsUser.cs" />
+    <Compile Include="Class\clsUser_Right.cs" />
+    <Compile Include="Class\readFile.cs" />
+    <Compile Include="Class\sql.cs" />
+    <Compile Include="frmbangtileluong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmbangtileluong.Designer.cs">
+      <DependentUpon>frmbangtileluong.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmchonbcnv.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmchonbcnv.Designer.cs">
+    <Compile Include="frmchonbcnv.designer.cs">
       <DependentUpon>frmchonbcnv.cs</DependentUpon>
-=======
+    </Compile>
+    <Compile Include="frmConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmConfig.designer.cs">
+      <DependentUpon>frmConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDMChucVu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDMChucVu.Designer.cs">
+      <DependentUpon>frmDMChucVu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDMChuyenMon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDMChuyenMon.designer.cs">
+      <DependentUpon>frmDMChuyenMon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDMDanToc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDMDanToc.designer.cs">
+      <DependentUpon>frmDMDanToc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDMHieuQua.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDMHieuQua.designer.cs">
+      <DependentUpon>frmDMHieuQua.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDMLoaiHD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDMLoaiHD.designer.cs">
+      <DependentUpon>frmDMLoaiHD.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDMNgoaiNgu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDMNgoaiNgu.designer.cs">
+      <DependentUpon>frmDMNgoaiNgu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDMPhongBan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDMPhongBan.designer.cs">
+      <DependentUpon>frmDMPhongBan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDMTo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDMTo.designer.cs">
+      <DependentUpon>frmDMTo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDMTonGiao.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDMTonGiao.designer.cs">
+      <DependentUpon>frmDMTonGiao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDMTrinhDo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDMTrinhDo.designer.cs">
+      <DependentUpon>frmDMTrinhDo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmkiemtrabangluong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmkiemtrabangluong.Designer.cs">
+      <DependentUpon>frmkiemtrabangluong.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmKiemTraHDHetHan.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmKiemTraHDHetHan.Designer.cs">
+    <Compile Include="frmKiemTraHDHetHan.designer.cs">
       <DependentUpon>frmKiemTraHDHetHan.cs</DependentUpon>
->>>>>>> origin/BT_HDHetHan
-=======
+    </Compile>
     <Compile Include="frmLichLamViec.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmLichLamViec.designer.cs">
       <DependentUpon>frmLichLamViec.cs</DependentUpon>
->>>>>>> origin/BT_LichLamViec
     </Compile>
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
@@ -198,51 +272,79 @@
     <Compile Include="frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
-<<<<<<< HEAD
+    <Compile Include="frmNhanVien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmNhanVien.designer.cs">
+      <DependentUpon>frmNhanVien.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmrptbcnhanvien.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmrptbcnhanvien.designer.cs">
       <DependentUpon>frmrptbcnhanvien.cs</DependentUpon>
-=======
-    <Compile Include="frmNhanVien.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmNhanVien.Designer.cs">
-      <DependentUpon>frmNhanVien.cs</DependentUpon>
->>>>>>> origin/BT_NhanVien
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-<<<<<<< HEAD
-<<<<<<< HEAD
     <Compile Include="rptbcnvtheoto1.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="rptdsnvtheophong11.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <EmbeddedResource Include="frmbangtileluong.resx">
+      <DependentUpon>frmbangtileluong.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmchonbcnv.resx">
       <DependentUpon>frmchonbcnv.cs</DependentUpon>
-=======
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmConfig.resx">
+      <DependentUpon>frmConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDMChucVu.resx">
+      <DependentUpon>frmDMChucVu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDMChuyenMon.resx">
+      <DependentUpon>frmDMChuyenMon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDMDanToc.resx">
+      <DependentUpon>frmDMDanToc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDMHieuQua.resx">
+      <DependentUpon>frmDMHieuQua.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDMLoaiHD.resx">
+      <DependentUpon>frmDMLoaiHD.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDMNgoaiNgu.resx">
+      <DependentUpon>frmDMNgoaiNgu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDMPhongBan.resx">
+      <DependentUpon>frmDMPhongBan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDMTo.resx">
+      <DependentUpon>frmDMTo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDMTonGiao.resx">
+      <DependentUpon>frmDMTonGiao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDMTrinhDo.resx">
+      <DependentUpon>frmDMTrinhDo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmkiemtrabangluong.resx">
+      <DependentUpon>frmkiemtrabangluong.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmKiemTraHDHetHan.resx">
       <DependentUpon>frmKiemTraHDHetHan.cs</DependentUpon>
->>>>>>> origin/BT_HDHetHan
-=======
+    </EmbeddedResource>
     <EmbeddedResource Include="frmLichLamViec.resx">
       <DependentUpon>frmLichLamViec.cs</DependentUpon>
->>>>>>> origin/BT_LichLamViec
     </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
-<<<<<<< HEAD
-    <EmbeddedResource Include="frmrptbcnhanvien.resx">
-      <DependentUpon>frmrptbcnhanvien.cs</DependentUpon>
-=======
     <EmbeddedResource Include="frmNhanVien.resx">
       <DependentUpon>frmNhanVien.cs</DependentUpon>
->>>>>>> origin/BT_NhanVien
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmrptbcnhanvien.resx">
+      <DependentUpon>frmrptbcnhanvien.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
