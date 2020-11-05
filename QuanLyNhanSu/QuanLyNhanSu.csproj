@@ -170,16 +170,40 @@
     <Compile Include="Classes\clsUser_Right.cs" />
     <Compile Include="Classes\readFile.cs" />
     <Compile Include="Classes\sql.cs" />
+    <Compile Include="frmchonbcnv.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmchonbcnv.Designer.cs">
+      <DependentUpon>frmchonbcnv.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmrptbcnhanvien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmrptbcnhanvien.designer.cs">
+      <DependentUpon>frmrptbcnhanvien.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="rptbcnvtheoto1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="rptdsnvtheophong11.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <EmbeddedResource Include="frmchonbcnv.resx">
+      <DependentUpon>frmchonbcnv.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmrptbcnhanvien.resx">
+      <DependentUpon>frmrptbcnhanvien.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
