@@ -60,13 +60,7 @@ namespace QuanLyNhanSu
                 dgv_TCTD1.DataSource = c.laydl();
                 dgv_TCTD1.DataMember = "TC_TrinhDo";
             }
-            else
-            {
-                if (dk.Substring(0, 4) == " and")
-                    dk = dk.Substring(5);
-                dgv_TCTD1.DataSource = c.laydl(dk);
-                dgv_TCTD1.DataMember = "TC_TrinhDo";
-            }
+            
         }
 
         private void cmdnntim_Click(object sender, EventArgs e)
