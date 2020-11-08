@@ -141,6 +141,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <Compile Include="Classes\BusinessCardElement.cs" />
     <Compile Include="Classes\clsbangluong.cs" />
     <Compile Include="Classes\clschitietchuyenmon.cs" />
@@ -175,6 +176,13 @@
     </Compile>
     <Compile Include="frmchonbcnv.Designer.cs">
       <DependentUpon>frmchonbcnv.cs</DependentUpon>
+=======
+    <Compile Include="frmKiemTraHDHetHan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmKiemTraHDHetHan.Designer.cs">
+      <DependentUpon>frmKiemTraHDHetHan.cs</DependentUpon>
+>>>>>>> origin/BT_HDHetHan
     </Compile>
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
@@ -198,6 +206,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+<<<<<<< HEAD
     <Compile Include="rptbcnvtheoto1.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -206,6 +215,10 @@
     </Compile>
     <EmbeddedResource Include="frmchonbcnv.resx">
       <DependentUpon>frmchonbcnv.cs</DependentUpon>
+=======
+    <EmbeddedResource Include="frmKiemTraHDHetHan.resx">
+      <DependentUpon>frmKiemTraHDHetHan.cs</DependentUpon>
+>>>>>>> origin/BT_HDHetHan
     </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
