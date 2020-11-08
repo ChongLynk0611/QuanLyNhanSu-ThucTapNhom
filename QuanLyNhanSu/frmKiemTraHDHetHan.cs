@@ -42,7 +42,7 @@ namespace QuanLyNhanSu
         {
 
             if (cbothangkt.Text == "" || cbonamkt.Text == "")
-                RadMessageBox.Show("\nBạn phải chọn tháng và năm !\n", "Thông báo", MessageBoxButtons.OK, RadMessageIcon.Error);
+                RadMessageBox.Show("\nBạn phải chọn tháng và năm !\n", "Thông báo",MessageBoxButtons.OK,RadMessageIcon.Error);
             else
             {
                 if (cbothangkt.Text.Trim() == "12")
@@ -57,7 +57,7 @@ namespace QuanLyNhanSu
                     dgv_NV_HopDong.Columns[5].HeaderText = "Phòng";
                     dgv_NV_HopDong.Columns[6].HeaderText = "Tổ";
                     dgv_NV_HopDong.Columns[1].IsVisible = false;
-
+                    
                 }
                 else
                 {
@@ -85,7 +85,7 @@ namespace QuanLyNhanSu
                 f.Show();
             }
             else
-                RadMessageBox.Show("\nKhông có dữ liệu !\n", "Thông báo", MessageBoxButtons.OK, RadMessageIcon.Error);
+                RadMessageBox.Show("\nKhông có dữ liệu !\n", "Thông báo",MessageBoxButtons.OK,RadMessageIcon.Error);
 
         }
 

@@ -16,6 +16,8 @@ namespace QuanLyNhanSu
 {
     public partial class frmPhanQuyen : RadForm
     {
+        
+       
         //khai báo biến toàn cục
         clsUser cUser = new clsUser();
         clsUser_Right cUser_Right = new clsUser_Right();
@@ -27,15 +29,17 @@ namespace QuanLyNhanSu
             cboNguoiDung.DisplayMember = "User.ID";
             cboNguoiDung.ValueMember = "User.ID";
             update(cboNguoiDung.SelectedValue.ToString());
+            
         }
+
         private void frmPhanQuyen_Load(object sender, EventArgs e)
         {
-
+            
         }
-
+        
         public void update(string ma)
         {
-            string sqlupd = "Update tbl_User_Form set rights=@right where idform=@id and username='" + ma + "'";
+            string sqlupd = "Update tbl_User_Form set rights=@right where idform=@id and username='"+ma+"'";
             SqlCommand cmdupd = new SqlCommand(sqlupd, cUser_Right.sc);
             SqlParameter right = new SqlParameter("@right", SqlDbType.Bit, 1, "rights");
             SqlParameter id = new SqlParameter("@id", SqlDbType.Int, 4, "idform");
@@ -51,10 +55,10 @@ namespace QuanLyNhanSu
             cUser_Right.ds.Clear();
             cUser_Right.sda.Fill(cUser_Right.ds, "User_Right");
             cUser_Right.sc.Close();
-
+            
         }
 
-
+       
 
         private void btnOK_Click(object sender, EventArgs e)
         {
@@ -72,10 +76,10 @@ namespace QuanLyNhanSu
             dgvPhanQuyen.Columns[1].HeaderText = "Đối tượng form";
             dgvPhanQuyen.Columns[2].HeaderText = "Truy cập";
 
-
+            
             //DataGridViewImageColumn dgvIC = new DataGridViewImageColumn();
-
-
+            
+            
             //dgvIC.Image = new Bitmap(Application.StartupPath + "\\Hinh\\hinhform.gif");
             //dgvIC.Name = "imageform";
             //dgvIC.HeaderText = "";
@@ -85,4 +89,6 @@ namespace QuanLyNhanSu
             update(cboNguoiDung.SelectedValue.ToString());
         }
     }
+    
+    
 }

@@ -15,13 +15,24 @@ namespace QuanLyNhanSu
         {
             InitializeComponent();
         }
+
+        private void frmQTBienDong_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+           
+        }
+
         private void button2_Click(object sender, EventArgs e)
         {
             Close();
         }
         private Form KiemTraTonTai(Type formType)
         {
-            foreach (Form f in this.MdiParent.MdiChildren)
+            foreach (Form f in this.MdiParent.MdiChildren )
             {
                 if (f.GetType() == formType)
                     return f;
@@ -31,7 +42,7 @@ namespace QuanLyNhanSu
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+           
             if (opthd.Checked == true)
             {
                 Form frm = KiemTraTonTai(typeof(frmtracuutthopdong));
@@ -56,7 +67,6 @@ namespace QuanLyNhanSu
                     f.Show();
                 }
             }
-
-
-        }
+        }  
+    }
 }

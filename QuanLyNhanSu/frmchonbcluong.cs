@@ -15,6 +15,7 @@ namespace QuanLyNhanSu
 {
     public partial class frmchonbcluong : RadForm
     {
+        //khai báo biến toàn cục
         public SqlConnection sc = frmMain.me.sql.connectSQL();
         public SqlDataAdapter sda = new SqlDataAdapter();
         public DataSet ds = new DataSet();
@@ -29,7 +30,6 @@ namespace QuanLyNhanSu
         public frmchonbcluong()
         {
             InitializeComponent();
-
             for (int i = 1; i <= 12; i++)
             {
                 cbothangbh.Items.Add(i);
@@ -49,6 +49,7 @@ namespace QuanLyNhanSu
             cbophong.DataSource = cphong.taocombo();
             cbophong.DisplayMember = "tbl_phongban.tenphong";
             cbophong.ValueMember = "tbl_phongban.maphong";
+
         }
         //kiểm tra bảng lương có tồn tại hay không
         private bool kiemtra(string thang, string nam)
@@ -93,6 +94,7 @@ namespace QuanLyNhanSu
             cboto.ValueMember = "DanhMucto.mato";
             cboto.Text = "";
         }
+
         private void cmdin_Click(object sender, EventArgs e)
         {
             thangbc = ""; thangbh = ""; nambc = ""; nambh = ""; maphong = ""; mato = "";
@@ -118,7 +120,7 @@ namespace QuanLyNhanSu
             }
             else
             {
-                RadMessageBox.Show("\nKhông có dữ liệu bảng lương này !\n", "Thông báo", MessageBoxButtons.OK, RadMessageIcon.Error);
+                RadMessageBox.Show("\nKhông có dữ liệu bảng lương này !\n", "Thông báo",MessageBoxButtons.OK,RadMessageIcon.Error);
             }
         }
 
@@ -139,7 +141,7 @@ namespace QuanLyNhanSu
             }
             else
             {
-                RadMessageBox.Show("\nBạn chưa có bảng lương tháng này ! \n      Nên không có bảng báo cáo !\n", "Thông báo", MessageBoxButtons.OK, RadMessageIcon.Error);
+                RadMessageBox.Show("\nBạn chưa có bảng lương tháng này ! \n      Nên không có bảng báo cáo !\n", "Thông báo",MessageBoxButtons.OK,RadMessageIcon.Error);
             }
         }
 

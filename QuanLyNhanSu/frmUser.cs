@@ -26,7 +26,7 @@ namespace QuanLyNhanSu
             cbogroup.DataSource = cnhom.taocombo();
             cbogroup.DisplayMember = "nhom";
             cbogroup.ValueMember = "nhom";
-            txtusername.DataBindings.Add("text", laydl(), "tbl_user.ID");
+            txtusername.DataBindings.Add("text",laydl(), "tbl_user.ID");
             txtpassword.DataBindings.Add("text", laydl(), "tbl_user.pass");
             dgvUser.DataSource = laydl();
             dgvUser.DataMember = "tbl_user";
@@ -34,6 +34,7 @@ namespace QuanLyNhanSu
             dgvUser.Columns[1].HeaderText = "Mật khẩu";
             dgvUser.Columns[2].HeaderText = "Nhóm người dùng";
         }
+
         private void setbutton(bool b)
         {
             cmdCapnhat.Enabled = b;
@@ -45,8 +46,8 @@ namespace QuanLyNhanSu
 
         private void setcontrol(bool b)
         {
-            txtusername.Enabled = b;
-            txtpassword.Enabled = b;
+            txtusername.Enabled  = b;
+            txtpassword.Enabled  = b;
             cbogroup.Enabled = b;
         }
 
@@ -67,7 +68,7 @@ namespace QuanLyNhanSu
         private void frmUser_Load(object sender, EventArgs e)
         {
             setbutton(true);
-            setcontrol(false);
+            setcontrol(false );
         }
 
         private void cmdthem_Click(object sender, EventArgs e)
@@ -75,7 +76,7 @@ namespace QuanLyNhanSu
             setbutton(false);
             setcontrol(true);
             txtusername.Focus();
-            txtusername.Text = "";
+            txtusername.Text= "";
             txtpassword.Text = "";
             k = 1;
         }
@@ -86,7 +87,7 @@ namespace QuanLyNhanSu
             txtpassword.Enabled = true;
             cbogroup.Enabled = true;
             txtpassword.Focus();
-            k = 2;
+            k=2;
         }
 
         private void cmdxoa_Click(object sender, EventArgs e)
@@ -110,7 +111,7 @@ namespace QuanLyNhanSu
 
         private void cmdluu_Click(object sender, EventArgs e)
         {
-            DialogResult rs = RadMessageBox.Show("\nBạn muốn lưu thông tin này không ?\n", "Thông báo", MessageBoxButtons.YesNo, RadMessageIcon.Question);
+            DialogResult rs = RadMessageBox.Show("\nBạn muốn lưu thông tin này không ?\n", "Thông báo", MessageBoxButtons.YesNo,RadMessageIcon.Question);
             if (rs == DialogResult.Yes)
             {
                 if (k == 1)
@@ -137,7 +138,7 @@ namespace QuanLyNhanSu
                             catch (SqlException ex)
                             {
                                 if (ex.Number == 2627)
-                                    RadMessageBox.Show("\nBạn đã có mã này rồi !\n", "Thông Báo", MessageBoxButtons.OK, RadMessageIcon.Error);
+                                    RadMessageBox.Show("\nBạn đã có mã này rồi !\n", "Thông Báo",MessageBoxButtons.OK,RadMessageIcon.Error);
                                 break;
                             }
                         }
@@ -169,5 +170,7 @@ namespace QuanLyNhanSu
         {
             Close();
         }
+
+        
     }
 }

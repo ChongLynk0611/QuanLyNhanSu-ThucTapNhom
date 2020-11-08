@@ -16,6 +16,7 @@ namespace QuanLyNhanSu
 {
     public partial class frmchonbcnv : RadForm
     {
+        //khai báo biến toàn cục
         public SqlConnection sc = frmMain.me.sql.connectSQL();
         public SqlDataAdapter sda = new SqlDataAdapter();
         public DataSet ds = new DataSet();

@@ -20,7 +20,7 @@ namespace QuanLyNhanSu
     public partial class frmNhanvien : RadForm
     {
         RadGridLocalizationProvider oldProvider;
-
+        
         clsDMTo cTo = new clsDMTo();
         clsdmpb cPhong = new clsdmpb();
         clsnhanvien cnhanvien = new clsnhanvien();
@@ -59,8 +59,9 @@ namespace QuanLyNhanSu
             cboPhong.DisplayMember = "tbl_PhongBan.TenPhong";
             cboPhong.ValueMember = "tbl_PhongBan.MaPhong";
             oldProvider = RadGridLocalizationProvider.CurrentProvider;
-
+           
             RadGridLocalizationProvider.CurrentProvider = new MyVNRadGridLocalizationProvider();
+            
         }
         public class MyVNRadGridLocalizationProvider : RadGridLocalizationProvider
         {
@@ -83,10 +84,15 @@ namespace QuanLyNhanSu
                     case RadGridStringId.EditMenuItem: return "Sửa";
                     case RadGridStringId.CopyMenuItem: return "Sao chép";
                     default:
-                        return base.GetLocalizedString(id);
+                    return base.GetLocalizedString(id);
                 }
             }
         }
+        //private void frmNhanvien_Load(object sender, EventArgs e)
+        //{
+        //    LoadCmbPhongBan();
+     
+        //}
         public void LoadCmbPhongBan()
         {
             con = sql.connectSQL();
@@ -96,7 +102,7 @@ namespace QuanLyNhanSu
             con.Close();
             this.cboPhong.SelectedIndex = 0;
         }
-        private void lamrong()
+               private void lamrong()
         {
             foreach (Control c in grpsoyeu1.Controls)
                 if (c.Name.Contains("txt") == true || c.Name.Contains("cbo") == true)
@@ -105,7 +111,7 @@ namespace QuanLyNhanSu
                 }
             foreach (Control c in grpsoyeu2.Controls)
                 if (c.Name.Contains("txt") == true || c.Name.Contains("cbo") == true)
-                    c.Text = "";
+                        c.Text = "";
             foreach (Control c in grpTTTD.Controls)
                 if (c.Name.Contains("txt") == true || c.Name.Contains("cbo") == true)
                     c.Text = "";
@@ -114,7 +120,7 @@ namespace QuanLyNhanSu
                     c.Text = "";
             foreach (Control c in grphopdong.Controls)
                 if (c.Name.Contains("txt") == true || c.Name.Contains("cbo") == true)
-                    c.Text = "";
+                     c.Text = "";
         }
 
         private void frmNhanvien_Load(object sender, EventArgs e)
@@ -123,13 +129,14 @@ namespace QuanLyNhanSu
             setcontrolsy(false);
             setcontrolhd(false);
             setcontrolhsl(false);
-            txthslngayll.Enabled = false;
+            txthslngayll.Enabled =false ;
             ksy = 0; khd = 0; kluong = 0;
             setcmd(true);
             setcmdhd(true);
             setcmdhsl(true);
             bienmanv = "";
         }
+
         //
         //List Nhân Viên
         //
@@ -145,7 +152,7 @@ namespace QuanLyNhanSu
                 lv.Items.Add(item);
             }
         }
-
+            
         private void lstNhanvien_SelectedIndexChanged(object sender, EventArgs e)
         {
             string ma = lstNhanvien.FocusedItem.SubItems[0].Text;
@@ -174,14 +181,14 @@ namespace QuanLyNhanSu
                 cboTo.DataSource = cTo.taocombo(cboPhong.SelectedValue.ToString());
                 cboTo.DisplayMember = "DanhMucTo.TenTo";
                 cboTo.ValueMember = "DanhMucTo.MaTo";
-
+                
                 this.cboTo.SelectedValue = this.cbosyto.SelectedValue;
             }
             else
             {
                 //cboTo.DataSource = cTo.taocombo(cboPhong.SelectedValue.ToString());
                 this.cboTo.Text = "";
-
+                
             }
             //MessageBox.Show(this.cbosyto.SelectedValue.ToString());
 
@@ -203,7 +210,7 @@ namespace QuanLyNhanSu
             lamrong();
             lstNhanvien.Items.Clear();
             HienThiListNV(cTo.laydlList(cboPhong.SelectedValue.ToString(), cboTo.SelectedValue.ToString()), lstNhanvien);
-
+           
         }
 
         private void setlist(bool b)
@@ -212,15 +219,16 @@ namespace QuanLyNhanSu
             cboPhong.Enabled = b;
             cboTo.Enabled = b;
         }
+
         //
         //tab sơ yếu lý lịch
         //
         //setcontrol so yeu ly lich
-        private void setcontrolsy(bool b)
+        private  void setcontrolsy(bool b)
         {
-            foreach (Control c in grpsoyeu1.Controls)
+            foreach (Control c in grpsoyeu1.Controls )
             {
-                if (c.Name.Contains("txtsy") == true || c.Name.Contains("cbosy") == true)
+                if (c.Name.Contains("txtsy")==true ||c.Name.Contains("cbosy")==true)
                     c.Enabled = b;
             }
             foreach (Control c in grpsoyeu2.Controls)
@@ -228,24 +236,24 @@ namespace QuanLyNhanSu
                 if (c.Name.Contains("txtsy") == true || c.Name.Contains("cbosy") == true)
                     c.Enabled = b;
             }
-
+              
         }
 
         //phương thức làm mờ bộ nút của tabsoyeu
-        private void setcmd(bool b)
+        private  void setcmd(bool b)
         {
             btnbrowser.Enabled = !b;
             cmdthem.Enabled = b;
-            cmdCapnhat.Enabled = b;
+            cmdCapnhat.Enabled= b;
             cmdxoa.Enabled = b;
             cmdluu.Enabled = !b;
             btnInNhanvien.Enabled = b;
         }
 
         //đưa trạng thái textbox về rỗng tabsoyeu
-        private void settextboxrong()
+        private  void settextboxrong()
         {
-            foreach (Control c in grpsoyeu1.Controls)
+            foreach (Control c in grpsoyeu1.Controls )
             {
                 if (c.Name.Contains("txtsy") == true)
                     c.Text = "";
@@ -258,39 +266,39 @@ namespace QuanLyNhanSu
         }
 
         //khởi tạo dữ liệu cho các combobox cho tabsoyeu
-        private void taocombosy()
+        private  void taocombosy()
         {
             //đưa dữ liệu vào cbosyphong
             cbosyphong.DataSource = cPhong.taocombo();
             cbosyphong.DisplayMember = "tbl_PhongBan.TenPhong";
             cbosyphong.ValueMember = "tbl_PhongBan.MaPhong";
-            if (txtsymanv.Text != "")
-                cbosyphong.SelectedValue = laydulieutheoma(txtsymanv.Text.Trim(), "MaPhong");
+            if(txtsymanv.Text!="")
+            cbosyphong.SelectedValue = laydulieutheoma(txtsymanv.Text.Trim(), "MaPhong");
             //đưa dữ liệu vào cbosydantoc
             cbosydantoc.DataSource = cDanToc.taocombo();
             cbosydantoc.DisplayMember = "DMDanToc.TenDT";
             cbosydantoc.ValueMember = "DMDanToc.MaDT";
             if (txtsymanv.Text != "")
-                cbosydantoc.SelectedValue = int.Parse(laydulieutheoma(txtsymanv.Text.Trim(), "MaDT"));
+            cbosydantoc.SelectedValue = int.Parse(laydulieutheoma(txtsymanv.Text.Trim(), "MaDT"));
             //đưa dữ liệu vào cbosychucvu
             cbosychucvu.DataSource = cchucvu.taocombo();
             cbosychucvu.DisplayMember = "DMChucVu.TenChucVu";
             cbosychucvu.ValueMember = "DMChucVu.MaChucVu";
             if (txtsymanv.Text != "")
-                cbosychucvu.SelectedValue = int.Parse(laydulieutheoma(txtsymanv.Text.Trim(), "MaChucVu"));
+            cbosychucvu.SelectedValue = int.Parse(laydulieutheoma(txtsymanv.Text.Trim(), "MaChucVu"));
             //đưa dữ liệu vào cbosytongiao
             cbosytongiao.DataSource = ctongiao.taocombo();
             cbosytongiao.DisplayMember = "DMTonGiao.TenTG";
             cbosytongiao.ValueMember = "DMTonGiao.MaTG";
             if (txtsymanv.Text != "")
-                cbosytongiao.SelectedValue = int.Parse(laydulieutheoma(txtsymanv.Text.Trim(), "MaTG"));
+            cbosytongiao.SelectedValue = int.Parse(laydulieutheoma(txtsymanv.Text.Trim(), "MaTG"));
         }
-
+        
         //hiển thị dữ liệu nhân viên vào trang sơ yếu lý lịch
-        private void HienthiTTNhanVien(string ma)
+        private  void HienthiTTNhanVien(string ma)
         {
             cnhanvien.laydl(ma);
-
+            
             //
             //lấy dữ liệu vào các textbox
             //
@@ -353,14 +361,14 @@ namespace QuanLyNhanSu
         }
 
         //lấy dữ liệu cho các combobox trong tabsoyeu theo mã nhân viên
-        private string laydulieutheoma(string ma, string macombo)
+        private  string laydulieutheoma(string ma,string macombo)
         {
             cnhanvien.sc.Open();
             string sql = "select " + macombo + " from Tbl_nhanvien where MaNV='" + ma + "'";
             SqlCommand cmd = new SqlCommand(sql, cnhanvien.sc);
             object o = cmd.ExecuteScalar();
             cnhanvien.sc.Close();
-            return o.ToString();
+            return o.ToString();    
         }
 
         //lấy mã nhân viên tự động
@@ -376,15 +384,16 @@ namespace QuanLyNhanSu
                 kq = "NV0" + (so + 1);
             else
                 kq = "NV" + (so + 1);
-
-
+            
+            
             return kq;
-        }
+        }   
+
         //bộ nút của tab sơ yếu lý lịch
 
         private void cmdluu_Click(object sender, EventArgs e)
         {
-            if (this.txtsyhonv.Text.Trim() != String.Empty && this.txtsytennv.Text.Trim() != String.Empty && this.txtsyngaysinh.Text.Trim() != String.Empty)
+            if (this.txtsyhonv.Text.Trim() != String.Empty && this.txtsytennv.Text.Trim() != String.Empty && this.txtsyngaysinh.Text.Trim() !=String.Empty)
             {
 
                 if (this.txtsysEmail.Text.Trim() != String.Empty)
@@ -723,10 +732,11 @@ namespace QuanLyNhanSu
             }
             else
             {
-                RadMessageBox.Show("\nHọ tên và ngày sinh nhân viên không được bỏ trống !\n", "Thông báo", MessageBoxButtons.OK, RadMessageIcon.Error);
+                RadMessageBox.Show("\nHọ tên và ngày sinh nhân viên không được bỏ trống !\n","Thông báo",MessageBoxButtons.OK,RadMessageIcon.Error);
             }
-
+            
         }
+
         private void cmdthem_Click(object sender, EventArgs e)
         {
             //if (cbosyto.DataSource !=null)
@@ -785,7 +795,7 @@ namespace QuanLyNhanSu
                 setlist(false);
                 taocombosy();
                 txtsyhonv.Focus();
-                setcmd(false);
+                setcmd(false);               
             }
         }
 
@@ -800,7 +810,7 @@ namespace QuanLyNhanSu
             //    File.Copy(dlg.in,
             //              dirListBox2.Path + "\\" + fileListBox1.FileName, true);
 
-
+                
 
             //}
             //catch (Exception ex)
@@ -810,18 +820,18 @@ namespace QuanLyNhanSu
             //    MessageBoxButtons.OK,
             //    MessageBoxIcon.Error);
             //}
-
+            
             if (dlg.ShowDialog() == DialogResult.OK)
             {
                 //MessageBox.Show(dlg.FileName.ToString());
-
+                
                 filename = dlg.FileName.Substring(dlg.FileName.LastIndexOf("\\") + 1, dlg.FileName.Length - dlg.FileName.LastIndexOf("\\") - 1);
                 try
                 {
-
-                    File.Copy(dlg.FileName, Application.StartupPath + @"\hinh\" + filename, true);
+                    
+                    File.Copy(dlg.FileName, Application.StartupPath + @"\hinh\" + filename,true);
                 }
-                catch (IOException ex)
+                catch(IOException ex) 
                 {
                     //RadMessageBox.Show("\nTên file ảnh bạn chọn đã có trong dữ liệu, xin vui lòng đổi tên lại !\n","Thông báo",MessageBoxButtons.OK,RadMessageIcon.Exclamation);
                 }
@@ -834,11 +844,12 @@ namespace QuanLyNhanSu
                 {
                     RadMessageBox.Show(this, "\nHình chọn không đúng !\n", "Thông báo", MessageBoxButtons.OK, RadMessageIcon.Exclamation);
                 }
-
+               
             }
-
+            
 
         }
+
         //kiểm tra việc nhập ngày sinh
         private void txtsyngaysinh_Validated(object sender, EventArgs e)
         {
@@ -847,7 +858,7 @@ namespace QuanLyNhanSu
             {
                 if (!sql.KiemTraNgay(s))
                 {
-                    RadMessageBox.Show("\nBạn đã nhập ngày sai, xin vui lòng kiểm tra lại !\n", "Thông báo", MessageBoxButtons.OK, RadMessageIcon.Exclamation);
+                    RadMessageBox.Show("\nBạn đã nhập ngày sai, xin vui lòng kiểm tra lại !\n", "Thông báo",MessageBoxButtons.OK,RadMessageIcon.Exclamation);
                     txtsyngaysinh.Text = "";
                     txtsyngaysinh.Focus();
                 }
@@ -868,7 +879,7 @@ namespace QuanLyNhanSu
             {
                 if (!sql.KiemTraNgay(s))
                 {
-                    RadMessageBox.Show("\nBạn nhập ngày sai, xin vui lòng xem lại !\n", "Thông báo", MessageBoxButtons.OK, RadMessageIcon.Exclamation);
+                    RadMessageBox.Show("\nBạn nhập ngày sai, xin vui lòng xem lại !\n", "Thông báo",MessageBoxButtons.OK,RadMessageIcon.Exclamation);
                     txtsyngayvl.Text = "";
                     txtsyngayvl.Focus();
                 }
@@ -885,7 +896,7 @@ namespace QuanLyNhanSu
         //
 
         //Hiển thị dữ liệu vào trang kinh nghiệm
-        private void HienThiDLKN(string ma)
+        private  void HienThiDLKN(string ma)
         {
             cngoaingu.CapNhatNN(ma);
             cchuyenmon.CapNhatCM(ma);
@@ -896,7 +907,7 @@ namespace QuanLyNhanSu
             dgv_ChitietNN.DataMember = "NV_NgoaiNgu1";
 
             //tạo combo ngoại ngữ trong dgv_ChiTietNN
-            GridViewComboBoxColumn grdCCNN = new GridViewComboBoxColumn("Tên ngoại ngữ", "mangoaingu");
+            GridViewComboBoxColumn grdCCNN = new GridViewComboBoxColumn("Tên ngoại ngữ","mangoaingu");
             grdCCNN.HeaderText = "Tên ngoại ngữ";
             grdCCNN.Width = 140;
             grdCCNN.DataSource = cdmnn.taocombonn();
@@ -915,7 +926,7 @@ namespace QuanLyNhanSu
 
 
             //Tạo combo chuyên môn trong dgv_ChiTietChuyenMon
-            GridViewComboBoxColumn grdCCCM = new GridViewComboBoxColumn("Tên chuyên môn", "machuyenmon");
+            GridViewComboBoxColumn grdCCCM = new GridViewComboBoxColumn("Tên chuyên môn","machuyenmon");
             dgv_ChitietCM.Columns.RemoveAt(2);
             dgv_ChitietCM.Columns.RemoveAt(2);
             grdCCCM.HeaderText = "Tên chuyên môn";
@@ -940,22 +951,22 @@ namespace QuanLyNhanSu
 
 
         }
-
+    
         private void cmdcapnhatnn_Click(object sender, EventArgs e)
         {
             cngoaingu.sc.Open();
             try
             {
-
+                
                 cngoaingu.sda.Update(cngoaingu.ds, "NV_ngoaingu1");
             }
             catch (SqlException ex)
             {
                 if (ex.Number == 2627)
-                    RadMessageBox.Show("\nID này đang tồn tại, không thể cập nhật !\n", "Thông Báo", MessageBoxButtons.OK, RadMessageIcon.Error);
+                    RadMessageBox.Show("\nID này đang tồn tại, không thể cập nhật !\n", "Thông Báo",MessageBoxButtons.OK,RadMessageIcon.Error);
                 else
                     RadMessageBox.Show("\nDữ liệu nhập vào không đúng,vui lòng kiểm tra lại !\n", "Thông Báo", MessageBoxButtons.OK, RadMessageIcon.Error);
-                //RadMessageBox.Show("\nKhông Thực Hiện Được\n", "Thông Báo");
+                    //RadMessageBox.Show("\nKhông Thực Hiện Được\n", "Thông Báo");
             }
             cngoaingu.sc.Close();
         }
@@ -967,10 +978,10 @@ namespace QuanLyNhanSu
             {
                 cchuyenmon.sda.Update(cchuyenmon.ds, "NV_ChuyenMon1");
             }
-            catch (SqlException ex)
+            catch(SqlException ex)
             {
                 if (ex.Number == 2627)
-                    RadMessageBox.Show("\n ID này đang tồn tại, không thể cập nhật !\n", "Thông Báo", MessageBoxButtons.OK, RadMessageIcon.Error);
+                    RadMessageBox.Show("\n ID này đang tồn tại, không thể cập nhật !\n", "Thông Báo",MessageBoxButtons.OK,RadMessageIcon.Error);
                 else
                     RadMessageBox.Show("\n Dữ liệu nhập vào không được rỗng !\n Vui lòng kiểm tra lại !\n", "Thông Báo", MessageBoxButtons.OK, RadMessageIcon.Error);
             }
@@ -991,7 +1002,7 @@ namespace QuanLyNhanSu
         //
 
         //setcontrol tab hợp đồng 
-        private void setcontrolhd(bool b)
+        private  void setcontrolhd(bool b)
         {
             foreach (Control c in grphopdong.Controls)
             {
@@ -1011,39 +1022,39 @@ namespace QuanLyNhanSu
         }
 
         //tạo combobox loaihd
-        private void taocomboloaihd()
+        private  void taocomboloaihd()
         {
             cbohdloaihd.DataSource = cdmhd.taocombohd();
             cbohdloaihd.DisplayMember = "TenLoaiHD";
             cbohdloaihd.ValueMember = "MaLoaiHD";
             if (txthdmahd.Text != "")
-                cbohdloaihd.SelectedValue = int.Parse(layloaihdtheoma(txthdmahd.Text.Trim()));
+                cbohdloaihd.SelectedValue = int.Parse(layloaihdtheoma(txthdmahd.Text.Trim())); 
         }
 
         //set bộ nút của tab hợp đồng
-        private void setcmdhd(bool b)
+        private  void setcmdhd(bool b)
         {
-            cmdhdthem.Enabled = b;
+            cmdhdthem . Enabled = b;
             cmdhdCapnhat.Enabled = b;
             cmdhdxoa.Enabled = b;
             cmdhdluu.Enabled = !b;
         }
 
         //hiển thị dữ liệu của tab hợp đồng
-        private void HienThiTTHopDong(string ma)
+        private  void HienThiTTHopDong(string ma)
 
         {
             dgv_ChiTietHopDong.DataSource = ccthopdong.laydl(ma);
             dgv_ChiTietHopDong.DataMember = "NV_HopDong";
 
-            dgv_ChiTietHopDong.Columns[0].HeaderText = "Số hợp đồng";
-            dgv_ChiTietHopDong.Columns[3].HeaderText = "Loại hợp đồng";
-            dgv_ChiTietHopDong.Columns[4].HeaderText = "Ngày ký";
-            dgv_ChiTietHopDong.Columns[5].HeaderText = "Ngày kết thúc";
-            dgv_ChiTietHopDong.Columns[6].HeaderText = "Lương cơ bản";
-            dgv_ChiTietHopDong.Columns[1].IsVisible = false;
+            dgv_ChiTietHopDong.Columns[0].HeaderText="Số hợp đồng";
+            dgv_ChiTietHopDong.Columns[3].HeaderText="Loại hợp đồng";
+            dgv_ChiTietHopDong.Columns[4].HeaderText="Ngày ký";
+            dgv_ChiTietHopDong.Columns[5].HeaderText="Ngày kết thúc";
+            dgv_ChiTietHopDong.Columns[6].HeaderText="Lương cơ bản";
+            dgv_ChiTietHopDong.Columns[1].IsVisible=false;
             dgv_ChiTietHopDong.Columns[2].IsVisible = false;
-
+  
             if (ccthopdong.kiemtra(ma) == true)
             {
                 txthdmahd.Text = ccthopdong.ds.Tables["NV_HopDong"].Rows[0]["SoHD"].ToString();
@@ -1059,7 +1070,7 @@ namespace QuanLyNhanSu
             {
                 txthdmahd.Text = "";
                 txthdngaykt.Text = "";
-                txthdngayky.Text = "";
+                txthdngayky.Text ="";
                 txthdluongcb.Text = "";
             }
         }
@@ -1072,7 +1083,7 @@ namespace QuanLyNhanSu
             //    kq = "HD0" + (so + 1);
             if (so + 1 < 100)
                 kq = "HD00" + (so + 1);
-            if (so + 1 < 1000 && so + 1 >= 100)
+            if (so + 1 < 1000  && so + 1 >= 100)
                 kq = "HD0" + (so + 1);
             if (so + 1 < 10000 && so + 1 >= 1000)
                 kq = "HD" + (so + 1);
@@ -1089,8 +1100,8 @@ namespace QuanLyNhanSu
             //    kq = "NV000000" + (so + 1);
             //if (so + 1 < 10)
             //    kq = "NV0000000" + (so + 1);
-
-        }
+            
+        }   
 
         private void txthdmahd_Validated(object sender, EventArgs e)
         {
@@ -1099,7 +1110,7 @@ namespace QuanLyNhanSu
 
         private void cmdhdthem_Click(object sender, EventArgs e)
         {
-
+           
             khd = 1;
             setcontrolhd(true);
             setlist(false);
@@ -1142,7 +1153,7 @@ namespace QuanLyNhanSu
             DialogResult rs = RadMessageBox.Show("\nBạn muốn xóa mẩu tin này không ?\n", "Thông Báo", MessageBoxButtons.YesNo, RadMessageIcon.Question);
             if (rs == DialogResult.Yes)
                 ccthopdong.xoa(txthdmahd.Text.Trim());
-
+            
             HienThiTTHopDong(bienmanv);
         }
 
@@ -1158,7 +1169,7 @@ namespace QuanLyNhanSu
                                     txthdmanv.Text.Trim(),
                                     sql.TraVeNgay(txthdngayky.Text.Trim(), 1),
                                     sql.TraVeNgay(txthdngaykt.Text.Trim(), 1),
-                                    txthdluongcb.Text != "" ? int.Parse(txthdluongcb.Text.Trim()) : 0);
+                                    txthdluongcb.Text !="" ? int.Parse(txthdluongcb.Text.Trim()) : 0 );
                 }
                 else if (khd == 2)
                 {
@@ -1173,9 +1184,9 @@ namespace QuanLyNhanSu
             else
             {
                 HienThiTTHopDong(bienmanv);
-
+               
             }
-
+            
             khd = 0;
             setcmdhd(true);
             setlist(true);
@@ -1189,7 +1200,7 @@ namespace QuanLyNhanSu
             if (!Char.IsNumber(e.KeyChar))
             {
                 RadMessageBox.Show("\nBạn phải nhập số\n", "Thông báo", MessageBoxButtons.OK, RadMessageIcon.Exclamation);
-            }
+            }       
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -1204,13 +1215,13 @@ namespace QuanLyNhanSu
 
         private void dgv_ChiTietHopDong_Click(object sender, EventArgs e)
         {
-
+            
             //DataGridViewRow row = dgv_ChiTietHopDong.CurrentRow;
 
             if (this.dgv_ChiTietHopDong.CurrentRow != null)
             {
-
-
+                
+                
                 txthdmahd.Text = Convert.ToString(this.dgv_ChiTietHopDong.CurrentRow.Cells[0].Value);
                 //txthdngayky.Text = Convert.ToString(this.dgv_ChiTietHopDong.CurrentRow.Cells[4].Value);
                 txthdngayky.Text = sql.NgayToString(this.dgv_ChiTietHopDong.CurrentRow.Cells[4].Value.ToString());
@@ -1218,8 +1229,9 @@ namespace QuanLyNhanSu
                 txthdngaykt.Text = sql.NgayToString(this.dgv_ChiTietHopDong.CurrentRow.Cells[5].ToString());
                 txthdluongcb.Text = Convert.ToString(this.dgv_ChiTietHopDong.CurrentRow.Cells[6].Value);
             }
-
+           
         }
+
         //kiểm tra việc nhập ngày ký 
         private void txthdngayky_Validated(object sender, EventArgs e)
         {
@@ -1239,7 +1251,7 @@ namespace QuanLyNhanSu
                 txthdngayky.Text = "";
                 txthdngayky.Focus();
             }
-
+            
         }
 
         //kiểm tra việc nhập ngày kết thúc hợp đồng
@@ -1256,9 +1268,9 @@ namespace QuanLyNhanSu
                 }
                 else
                     if (sql.TraVeNgay(s, 1) <= sql.TraVeNgay(txthdngayky.Text.Trim(), 1))
-                {
-                    RadMessageBox.Show("\nNgày kết thúc phải sau ngày ký hợp đồng !\n", "Thông báo", MessageBoxButtons.OK, RadMessageIcon.Exclamation);
-                }
+                    {
+                        RadMessageBox.Show("\nNgày kết thúc phải sau ngày ký hợp đồng !\n", "Thông báo", MessageBoxButtons.OK, RadMessageIcon.Exclamation);
+                    }
             }
             else
             {
@@ -1266,7 +1278,7 @@ namespace QuanLyNhanSu
                 txthdngaykt.Text = "";
                 txthdngaykt.Focus();
             }
-        }
+        }       
         //
         //tab ho so luong
         //
@@ -1282,9 +1294,9 @@ namespace QuanLyNhanSu
         //setcontrol tab hồ sơ lương 
         private void setcontrolhsl(bool b)
         {
-            txthslmucluong.Enabled = b;
+            txthslmucluong.Enabled =b;
             txthslngayll.Enabled = b;
-            cbohslsohd.Enabled = b;
+            cbohslsohd.Enabled =b;
         }
 
         //tạo combo số hợp đồng
@@ -1360,8 +1372,8 @@ namespace QuanLyNhanSu
             {
                 try
                 {
-
-                    chsluong.xoa(cbohslsohd.SelectedValue.ToString(), sql.TraVeNgay(this.txthslngayll.Text, 1));
+                    
+                    chsluong.xoa(cbohslsohd.SelectedValue.ToString(),sql.TraVeNgay(this.txthslngayll.Text,1));
                 }
                 catch (Exception ex)
                 {
@@ -1407,9 +1419,9 @@ namespace QuanLyNhanSu
                                        txthslmucluong.Text != "" ? int.Parse(txthslmucluong.Text.Trim()) : 0);
                     }
                 }
-                catch (Exception ex)
+                catch(Exception ex)
                 {
-                    RadMessageBox.Show("\nDữ liệu nhập vào không đúng !\n Vui lòng kiểm tra lại !\n", "Thông báo", MessageBoxButtons.OK, RadMessageIcon.Error);
+                    RadMessageBox.Show("\nDữ liệu nhập vào không đúng !\n Vui lòng kiểm tra lại !\n","Thông báo",MessageBoxButtons.OK,RadMessageIcon.Error);
                 }
             }
             else
@@ -1422,9 +1434,11 @@ namespace QuanLyNhanSu
             setcontrolhsl(false);
             HienThiTTHoSoLuong(bienmanv);
         }
+  
+
         private Form KiemTraTonTai(Type formType)
         {
-            foreach (Form f in this.MdiParent.MdiChildren)
+            foreach (Form f in this.MdiParent.MdiChildren) 
             {
                 if (f.GetType() == formType)
                     return f;
@@ -1461,16 +1475,17 @@ namespace QuanLyNhanSu
 
             if (!Char.IsDigit(e.KeyChar) && !Char.IsControl(e.KeyChar))
             {
-                RadMessageBox.Show("\nChỉ được phép nhập số vào ô thông tin này !\n", "Thông báo", MessageBoxButtons.OK, RadMessageIcon.Exclamation);
+                RadMessageBox.Show("\nChỉ được phép nhập số vào ô thông tin này !\n","Thông báo",MessageBoxButtons.OK,RadMessageIcon.Exclamation);
                 e.Handled = true;
             }
-
+          
 
 
         }
+
         private void cmdqhThem_Click(object sender, EventArgs e)
         {
-            foreach (Control c in grpThongTinQH.Controls)
+             foreach (Control c in grpThongTinQH.Controls )
             {
                 if (c.Name.Contains("txtqh") == true)
                 {
@@ -1486,9 +1501,9 @@ namespace QuanLyNhanSu
                     }
 
                 }
-
+                    
             }
-
+            
             this.lstNhanvien.Enabled = false;
             this.cmdqhThem.Enabled = false;
             this.grpThongTinQH.Enabled = true;
@@ -1508,24 +1523,24 @@ namespace QuanLyNhanSu
             string strLaNhanVienCongTy = "";
             if (this.cboqhTinhTrang.SelectedIndex == 1)
             {
-
+                
                 strTinhTrang = "Đã chết";
 
             }
             else
             {
-
+               
                 strTinhTrang = "Còn sống";
             }
             if (this.cboqhNhanVienCT.SelectedIndex == 1)
             {
-
+                
                 strLaNhanVienCongTy = "Không";
 
             }
             else
             {
-
+               
                 strLaNhanVienCongTy = "Có";
             }
 
@@ -1674,44 +1689,44 @@ namespace QuanLyNhanSu
                     c.Text = "";
                 }
             cQuanHeGD.laydl(ma);
+            
+
+                this.dgv_QuanHeGiaDinh.DataSource = cQuanHeGD.ds;
+                this.dgv_QuanHeGiaDinh.DataMember = "quanhe";
+
+                this.dgv_QuanHeGiaDinh.Columns[0].IsVisible = false;
+                this.dgv_QuanHeGiaDinh.Columns[1].IsVisible = false;
+                this.dgv_QuanHeGiaDinh.Columns[2].IsVisible = false;
+
+                this.dgv_QuanHeGiaDinh.Columns[3].IsVisible = false;
+                this.dgv_QuanHeGiaDinh.Columns[4].HeaderText = "Họ";
+                this.dgv_QuanHeGiaDinh.Columns[5].HeaderText = "Tên";
+                this.dgv_QuanHeGiaDinh.Columns[6].HeaderText = "Giới tính";
+                this.dgv_QuanHeGiaDinh.Columns[7].HeaderText = "Loại quan hệ";
+
+                this.dgv_QuanHeGiaDinh.Columns[8].HeaderText = "Ngày sinh";
+                this.dgv_QuanHeGiaDinh.Columns[9].HeaderText = "Hộ khẩu TT";
+                this.dgv_QuanHeGiaDinh.Columns[10].HeaderText = "Chổ ở HT";
+                this.dgv_QuanHeGiaDinh.Columns[11].HeaderText = "Điện thoại";
+                this.dgv_QuanHeGiaDinh.Columns[12].HeaderText = "Nghề nghiệp";
+                this.dgv_QuanHeGiaDinh.Columns[13].HeaderText = "Nơi công tác";
+                this.dgv_QuanHeGiaDinh.Columns[14].HeaderText = "Tình Trạng";
+                this.dgv_QuanHeGiaDinh.Columns[15].HeaderText = "Là nhân viên CTy";
+                this.dgv_QuanHeGiaDinh.Columns[16].HeaderText = "Ghi chú";
+
+                for (int i = 0; i < dgv_QuanHeGiaDinh.Columns.Count; i++)
+                {
+                    dgv_QuanHeGiaDinh.Columns[i].BestFit();
+                }
 
 
-            this.dgv_QuanHeGiaDinh.DataSource = cQuanHeGD.ds;
-            this.dgv_QuanHeGiaDinh.DataMember = "quanhe";
-
-            this.dgv_QuanHeGiaDinh.Columns[0].IsVisible = false;
-            this.dgv_QuanHeGiaDinh.Columns[1].IsVisible = false;
-            this.dgv_QuanHeGiaDinh.Columns[2].IsVisible = false;
-
-            this.dgv_QuanHeGiaDinh.Columns[3].IsVisible = false;
-            this.dgv_QuanHeGiaDinh.Columns[4].HeaderText = "Họ";
-            this.dgv_QuanHeGiaDinh.Columns[5].HeaderText = "Tên";
-            this.dgv_QuanHeGiaDinh.Columns[6].HeaderText = "Giới tính";
-            this.dgv_QuanHeGiaDinh.Columns[7].HeaderText = "Loại quan hệ";
-
-            this.dgv_QuanHeGiaDinh.Columns[8].HeaderText = "Ngày sinh";
-            this.dgv_QuanHeGiaDinh.Columns[9].HeaderText = "Hộ khẩu TT";
-            this.dgv_QuanHeGiaDinh.Columns[10].HeaderText = "Chổ ở HT";
-            this.dgv_QuanHeGiaDinh.Columns[11].HeaderText = "Điện thoại";
-            this.dgv_QuanHeGiaDinh.Columns[12].HeaderText = "Nghề nghiệp";
-            this.dgv_QuanHeGiaDinh.Columns[13].HeaderText = "Nơi công tác";
-            this.dgv_QuanHeGiaDinh.Columns[14].HeaderText = "Tình Trạng";
-            this.dgv_QuanHeGiaDinh.Columns[15].HeaderText = "Là nhân viên CTy";
-            this.dgv_QuanHeGiaDinh.Columns[16].HeaderText = "Ghi chú";
-
-            for (int i = 0; i < dgv_QuanHeGiaDinh.Columns.Count; i++)
-            {
-                dgv_QuanHeGiaDinh.Columns[i].BestFit();
-            }
-
-
-
-
+                
+            
         }
-        private void HienThiTTQuanHeTheoMaQH(int MaQH, string MaNV)
+        private void HienThiTTQuanHeTheoMaQH(int MaQH,string MaNV)
         {
 
-            cQuanHeGD.laydl_(MaQH, MaNV);
+            cQuanHeGD.laydl_(MaQH,MaNV);
             //
             //lấy dữ liệu vào các textbox
             //
@@ -1755,13 +1770,13 @@ namespace QuanLyNhanSu
                 else
                     optqhNu.IsChecked = true;
 
-
+              
 
 
             }
             catch (Exception ex)
             {
-
+                
             }
         }
 
@@ -1782,7 +1797,7 @@ namespace QuanLyNhanSu
 
         private void dgv_QuanHeGiaDinh_CurrentRowChanged(object sender, CurrentRowChangedEventArgs e)
         {
-            HienThiTTQuanHeTheoMaQH(Int32.Parse(e.CurrentRow.Cells[2].Value.ToString()), e.CurrentRow.Cells[3].Value.ToString());
+            HienThiTTQuanHeTheoMaQH(Int32.Parse(e.CurrentRow.Cells[2].Value.ToString()),e.CurrentRow.Cells[3].Value.ToString());
             //MessageBox.Show(e.CurrentRow.Cells[2].Value.ToString());
         }
 
@@ -1813,8 +1828,8 @@ namespace QuanLyNhanSu
             else
             {
             }
-
-
+           
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -1863,5 +1878,18 @@ namespace QuanLyNhanSu
             HienThiTTHoSoLuong(bienmanv);
         }
 
+
+
+
+      
+       
+
+
+
+        
+
+        
+
+        
     }
 }

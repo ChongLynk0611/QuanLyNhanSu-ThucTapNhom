@@ -13,24 +13,25 @@ namespace QuanLyNhanSu
 {
     public partial class frmDoiMatKhau : RadForm
     {
+        clsUser cUser = new clsUser();
         public frmDoiMatKhau()
         {
-            clsUser cUser = new clsUser();
             InitializeComponent();
         }
+
         private void txtmkcu_Validated(object sender, EventArgs e)
         {
             if (cUser.KiemTraHopLe(frmMain.me.sql.GetUser(), txtmkcu.Text.Trim()) == false)
             {
-                RadMessageBox.Show("\nMật khẩu không hợp lệ !\n", "Thông báo", MessageBoxButtons.OK, RadMessageIcon.Error);
+                RadMessageBox.Show("\nMật khẩu không hợp lệ !\n", "Thông báo",MessageBoxButtons.OK,RadMessageIcon.Error);
                 txtmkcu.Text = "";
-                this.picNotValidMK.Visible = true;
-                this.picValidMK.Visible = false;
+                this.picNotValidMK.Visible=true;
+                this.picValidMK.Visible=false;
             }
             else
             {
-                this.picNotValidMK.Visible = false;
-                this.picValidMK.Visible = true;
+                this.picNotValidMK.Visible=false;
+                this.picValidMK.Visible=true;
             }
         }
 
@@ -44,7 +45,7 @@ namespace QuanLyNhanSu
                 this.picNotValidMKMoi2.Visible = true;
                 this.picNotValidMKMoi.Visible = true;
 
-
+                           
                 this.picValidMKMoi2.Visible = false;
                 this.picValidMKMoi.Visible = false;
             }
@@ -60,7 +61,7 @@ namespace QuanLyNhanSu
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            DialogResult rs = RadMessageBox.Show("\nBạn muốn lưu mật khẩu mới ?\n", "Thông báo", MessageBoxButtons.YesNo, RadMessageIcon.Question);
+            DialogResult rs = RadMessageBox.Show("\nBạn muốn lưu mật khẩu mới ?\n", "Thông báo", MessageBoxButtons.YesNo,RadMessageIcon.Question);
             if (rs == DialogResult.Yes)
             {
                 if (txtmkmoi.Text.Trim() != txtmkmoi2.Text.Trim())
@@ -89,7 +90,7 @@ namespace QuanLyNhanSu
                     try
                     {
                         cmdupd.ExecuteNonQuery();
-                        RadMessageBox.Show("\nCập nhật thành công !\n", "Thông báo", MessageBoxButtons.OK, RadMessageIcon.Exclamation);
+                        RadMessageBox.Show("\nCập nhật thành công !\n", "Thông báo",MessageBoxButtons.OK,RadMessageIcon.Exclamation);
                     }
                     catch (SqlException ex)
                     {
@@ -116,4 +117,3 @@ namespace QuanLyNhanSu
         }
     }
 }
-
