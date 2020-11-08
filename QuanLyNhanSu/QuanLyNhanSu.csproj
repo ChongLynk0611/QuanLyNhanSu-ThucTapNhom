@@ -141,6 +141,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <Compile Include="Class\BusinessCardElement.cs" />
     <Compile Include="Class\clsbangluong.cs" />
     <Compile Include="Class\clschitietchuyenmon.cs" />
@@ -175,6 +176,42 @@
     </Compile>
     <Compile Include="frmbangtileluong.Designer.cs">
       <DependentUpon>frmbangtileluong.cs</DependentUpon>
+=======
+    <Compile Include="Classes\BusinessCardElement.cs" />
+    <Compile Include="Classes\clsbangluong.cs" />
+    <Compile Include="Classes\clschitietchuyenmon.cs" />
+    <Compile Include="Classes\clschitiethopdong.cs" />
+    <Compile Include="Classes\clschitietngoaingu.cs" />
+    <Compile Include="Classes\clsdm.cs" />
+    <Compile Include="Classes\clsdmchucvu.cs" />
+    <Compile Include="Classes\clsdmchuyenmon.cs" />
+    <Compile Include="Classes\clsDMDanToc.cs" />
+    <Compile Include="Classes\clsdmform.cs" />
+    <Compile Include="Classes\clsdmhd.cs" />
+    <Compile Include="Classes\clsdmngoaingu.cs" />
+    <Compile Include="Classes\clsdmpb.cs" />
+    <Compile Include="Classes\clsDMTo.cs" />
+    <Compile Include="Classes\clsdmtongiao.cs" />
+    <Compile Include="Classes\clsdmtrinhdo.cs" />
+    <Compile Include="Classes\clshieuqua.cs" />
+    <Compile Include="Classes\clshosoluong.cs" />
+    <Compile Include="Classes\clsnhanvien.cs" />
+    <Compile Include="Classes\clsnhomnguoidung.cs" />
+    <Compile Include="Classes\clsQuanHeGD.cs" />
+    <Compile Include="Classes\clsTiLeLuong.cs" />
+    <Compile Include="Classes\clstimngoaingu.cs" />
+    <Compile Include="Classes\clstimtttrinhdo.cs" />
+    <Compile Include="Classes\clstkhopdong.cs" />
+    <Compile Include="Classes\clsUser.cs" />
+    <Compile Include="Classes\clsUser_Right.cs" />
+    <Compile Include="Classes\readFile.cs" />
+    <Compile Include="Classes\sql.cs" />
+    <Compile Include="frmchonbcluong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmchonbcluong.Designer.cs">
+      <DependentUpon>frmchonbcluong.cs</DependentUpon>
+>>>>>>> origin/TQ_BaoCaoLuongThangVaBaoHiem
     </Compile>
     <Compile Include="frmchonbcnv.cs">
       <SubType>Form</SubType>
@@ -272,11 +309,19 @@
     <Compile Include="frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
+<<<<<<< HEAD
     <Compile Include="frmNhanVien.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmNhanVien.designer.cs">
       <DependentUpon>frmNhanVien.cs</DependentUpon>
+=======
+    <Compile Include="frmrptbcbh.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmrptbcbh.Designer.cs">
+      <DependentUpon>frmrptbcbh.cs</DependentUpon>
+>>>>>>> origin/TQ_BaoCaoLuongThangVaBaoHiem
     </Compile>
     <Compile Include="frmrptbcnhanvien.cs">
       <SubType>Form</SubType>
@@ -284,13 +329,34 @@
     <Compile Include="frmrptbcnhanvien.designer.cs">
       <DependentUpon>frmrptbcnhanvien.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmrptluongtheophong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmrptluongtheophong.Designer.cs">
+      <DependentUpon>frmrptluongtheophong.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="rptbcbaohiem1.cs" />
     <Compile Include="rptbcnvtheoto1.cs">
       <SubType>Component</SubType>
     </Compile>
+<<<<<<< HEAD
     <EmbeddedResource Include="frmbangtileluong.resx">
       <DependentUpon>frmbangtileluong.cs</DependentUpon>
+=======
+    <Compile Include="rptdsnvtheophong11.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="rptluongtheophong1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="rptluongtheoto1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <EmbeddedResource Include="frmchonbcluong.resx">
+      <DependentUpon>frmchonbcluong.cs</DependentUpon>
+>>>>>>> origin/TQ_BaoCaoLuongThangVaBaoHiem
     </EmbeddedResource>
     <EmbeddedResource Include="frmchonbcnv.resx">
       <DependentUpon>frmchonbcnv.cs</DependentUpon>
@@ -340,11 +406,19 @@
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
+<<<<<<< HEAD
     <EmbeddedResource Include="frmNhanVien.resx">
       <DependentUpon>frmNhanVien.cs</DependentUpon>
+=======
+    <EmbeddedResource Include="frmrptbcbh.resx">
+      <DependentUpon>frmrptbcbh.cs</DependentUpon>
+>>>>>>> origin/TQ_BaoCaoLuongThangVaBaoHiem
     </EmbeddedResource>
     <EmbeddedResource Include="frmrptbcnhanvien.resx">
       <DependentUpon>frmrptbcnhanvien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmrptluongtheophong.resx">
+      <DependentUpon>frmrptluongtheophong.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
